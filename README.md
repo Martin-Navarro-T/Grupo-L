@@ -1,5 +1,5 @@
 # Grupo-CRIM
-# Integrantes
+## Integrantes
 - Martin Navarro
 - Ian Olmedo
 - Reynier Lopez
