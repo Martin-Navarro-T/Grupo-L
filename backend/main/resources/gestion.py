@@ -2,8 +2,8 @@ from flask_restful import Resource
 from flask import request
 
 NOTIFICACIONES = {
-    1:{"usuario":"Nahuel Vicente", "mensaje":"Mañana es tu fecha de vencimiento", "hora":"27/04/2024"},
-    2:{"usuario":"Olivia Rubio", "mensaje":"Mañana es tu fecha de vencimiento", "hora":"29/04/2024"},
+    1:{"usuario":"Ian Olmedo", "mensaje":"Mañana es tu fecha de vencimiento", "hora":"27/04/2024"},
+    2:{"usuario":"Reynier Lopez", "mensaje":"Mañana es tu fecha de vencimiento", "hora":"29/04/2024"},
 }
 
 CONFIGURACIONES = {
@@ -13,24 +13,23 @@ CONFIGURACIONES = {
 }
 
 VALORACIONES = {
-    1:{"cliente":"Nahuel Vicente", "libro":"Harry Potter", "fecha":"27/04/2024", "mensaje":"5 estrellas"},
-    2:{"cliente":"Olivia Rubio", "libro":"Nacidos de la bruma", "fecha":"28/04/2024", "mensaje":"2 estrellas"},
+    1:{"cliente":"Martin Navarro", "libro":"Harry Potter", "fecha":"27/04/2024", "mensaje":"5 estrellas"},
+    2:{"cliente":"Zoe Choque", "libro":"Nacidos de la bruma", "fecha":"28/04/2024", "mensaje":"2 estrellas"},
 }
 COMENTARIOS = {
-    1:{"cliente":"Nahuel Vicente", "libro":"Harry Potter", "fecha":"27/04/2024", "mensaje":"Muy bueno"},
-    2:{"cliente":"Olivia Rubio", "libro":"Nacidos de la bruma", "fecha":"28/04/2024", "mensaje":"Muy malo"},
+    1:{"cliente":"Nahuel Vicente", "libro":"Programación para tontos", "fecha":"27/04/2024", "mensaje":"Muy bueno"},
+    2:{"cliente":"Olivia Rubio", "libro":"Redes de Datos III", "fecha":"28/04/2024", "mensaje":"Muy malo"},
 }
 class Notificaciones(Resource):
-    #ARREGLAR
     def post(self):
         notificacion = request.get_json()
         id = int(max(NOTIFICACIONES.keys()))+1
         NOTIFICACIONES[id] = notificacion 
-        return NOTIFICACIONES[id], "mensaje enviado correctamente", 201
+        return NOTIFICACIONES[id], "El mensaje fue enviado correctamente", 201
 
 class Configuracion(Resource):
     def get(self):
-        return CONFIGURACIONES
+        return "Configuración: ", CONFIGURACIONES
  
     def put(self):
     #ARREGLAR
@@ -38,24 +37,24 @@ class Configuracion(Resource):
             configuracion = CONFIGURACIONES[int(id)]
             data = request.get_json()
             configuracion.update(data)
-            return "el mensaje fue actualizado correctamente", 201
+            return "El mensaje fue actualizado correctamente", 201
         else:
-            return 'No existe el id', 404
-
+            return 'La configuración no existe', 404
+        
 class Valoracion(Resource):
     def get(self):
-        return VALORACIONES
+        return "Valoraciones: ", VALORACIONES
     
     def post(self):
             #ARREGLAR
         prestamo = request.get_json()
         id = int(max(VALORACIONES.keys()))+1
         VALORACIONES[id] = prestamo
-        return VALORACIONES[id], "La valoracion ha sido registrada correctamente", 201
+        return VALORACIONES[id], "La valoración ha sido registrada correctamente", 201
 
 class Comentarios(Resource):
     def get(self):
-        return COMENTARIOS
+        return "Comentarios: ", COMENTARIOS
     
     def post(self):
         prestamo = request.get_json()

@@ -11,7 +11,7 @@ class Libro(Resource):
         if int(id) in LIBROS:
             return LIBROS[int(id)] 
         else:
-            return "No existe ese libro",404 
+            return "No existe ese libro", 404 
         
 
     def put(self,id):
@@ -19,7 +19,7 @@ class Libro(Resource):
             libro = LIBROS[int(id)]
             data = request.get_json()
             libro.update(data)
-            return "Actualizado con Exito"
+            return "El libro fue actualizado con exito"
         else:
             "No existe el libro", 404
 
@@ -27,13 +27,13 @@ class Libro(Resource):
     def delete(self,id):
         if int(id) in LIBROS:
             del LIBROS[int(id)]
-            return "Eliminado con exito"
+            return "El libro fue eliminado con exito"
         else: 
-            return "No hay nada para borrar",404
+            return "No existe el libro",404
         
 class Libros(Resource):
     def get(self):
-        return LIBROS
+        return "Libros: ", LIBROS
     
 
     def post(self):

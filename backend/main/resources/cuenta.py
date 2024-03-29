@@ -7,16 +7,15 @@ CUENTAS = {
 }
 
 class Sign_in(Resource):
-    def post (self,id):
+    def post (self):
         cuenta = request.get_json()
-        id = int(max(CUENTAS(id)))+1
+        id = int(max(CUENTAS.keys()))+1
         CUENTAS[id] = cuenta
-        return "Creado con exito!"
+        return "La cuenta ha sido creada con exito!"
     
 class Login(Resource):
-    def post (self,id):
+    def post (self):
         cuenta = request.get_json()
-        id = int(max(CUENTAS(id)))+1
+        id = int(max(CUENTAS.keys()))+1
         CUENTAS[id] = cuenta
-        return "Logeado con exito!"
-
+        return "Ha podido iniciar sesión!"
