@@ -41,3 +41,5 @@ class Prestamos(Resource):
         return PRESTAMOS[id], "Prestamo creado correctamente",  201
     
     
+    
+    

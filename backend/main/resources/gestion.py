@@ -60,3 +60,5 @@ class Comentarios(Resource):
         COMENTARIOS[id] = prestamo
         return COMENTARIOS[id],"El comentario ha sido registrado correctamente" ,201
     
+
+
