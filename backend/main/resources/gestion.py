@@ -21,6 +21,7 @@ COMENTARIOS = {
     2:{"cliente":"Olivia Rubio", "libro":"Nacidos de la bruma", "fecha":"28/04/2024", "mensaje":"Muy malo"},
 }
 class Notificaciones(Resource):
+    #ARREGLAR
     def post(self):
         notificacion = request.get_json()
         id = int(max(NOTIFICACIONES.keys()))+1
@@ -32,6 +33,7 @@ class Configuracion(Resource):
         return CONFIGURACIONES
  
     def put(self):
+    #ARREGLAR
         if int(id) in CONFIGURACIONES:
             configuracion = CONFIGURACIONES[int(id)]
             data = request.get_json()
@@ -45,6 +47,7 @@ class Valoracion(Resource):
         return VALORACIONES
     
     def post(self):
+            #ARREGLAR
         prestamo = request.get_json()
         id = int(max(VALORACIONES.keys()))+1
         VALORACIONES[id] = prestamo

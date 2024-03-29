@@ -11,10 +11,10 @@ def create_app():
 
     api.add_resource(resources.UsuariosResources, "/Usuarios")
     api.add_resource(resources.UsuarioResources, "/Usuario/<id>")
-    api.add_resource(resources.sign_inResources,"/sing_in/<id>")
-    api.add_resource(resources.LoginResources,"/login/<id>")
+    api.add_resource(resources.Sign_inResources,"/Sign_in")
+    api.add_resource(resources.LoginResources,"/Login")
     api.add_resource(resources.LibrosResources,"/Libros")
-    api.add_resource(resources.LibrosResources,"/Libro/<id>")
+    api.add_resource(resources.LibroResources,"/Libro/<id>")
     api.add_resource(resources.PrestamosResources, "/Prestamos")
     api.add_resource(resources.PrestamoResources, "/Prestamo/<id>")   
     api.add_resource(resources.NotificacionesResources, "/Notificaciones")

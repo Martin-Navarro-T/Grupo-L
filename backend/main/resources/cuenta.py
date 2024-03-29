@@ -6,7 +6,7 @@ CUENTAS = {
     2:{"nombre":"Olivia Rubio", "telefono":"261909451", "email":"o.rubia34@gmail.com"},
 }
 
-class sign_in(Resource):
+class Sign_in(Resource):
     def post (self,id):
         cuenta = request.get_json()
         id = int(max(CUENTAS(id)))+1

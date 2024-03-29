@@ -18,6 +18,7 @@ class Libro(Resource):
         if int(id) in LIBROS:
             libro = LIBROS[int(id)]
             data = request.get_json()
+            libro.update(data)
             return "Actualizado con Exito"
         else:
             "No existe el libro", 404
@@ -36,7 +37,6 @@ class Libros(Resource):
     
 
     def post(self):
-
         #ver que dos lbros no se repitan con distintos id 
         libro = request.get_json()
         id = int(max(LIBROS.keys()))+1
