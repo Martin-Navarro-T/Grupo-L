@@ -19,3 +19,4 @@ class Login(Resource):
         id = int(max(CUENTAS.keys()))+1
         CUENTAS[id] = cuenta
         return "Ha podido iniciar sesión!"
+

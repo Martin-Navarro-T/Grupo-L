@@ -38,3 +38,4 @@ class Usuarios(Resource):
         id = int(max(USUARIOS.keys()))+1
         USUARIOS[id] = usuario
         return USUARIOS[id], 201
+    

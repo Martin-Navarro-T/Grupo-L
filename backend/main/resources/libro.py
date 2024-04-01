@@ -13,7 +13,6 @@ class Libro(Resource):
         else:
             return "No existe ese libro", 404 
         
-
     def put(self,id):
         if int(id) in LIBROS:
             libro = LIBROS[int(id)]
