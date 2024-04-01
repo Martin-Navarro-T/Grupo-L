@@ -27,22 +27,22 @@ class Libro(Resource):
     def delete(self,id):
         if int(id) in LIBROS:
             del LIBROS[int(id)]
-            return "El libro fue eliminado con exito"
+            return "El libro fue eliminado con exito", 204 
         else: 
             return "No existe el libro",404
         
+
 class Libros(Resource):
     def get(self):
-        return "Libros: ", LIBROS
-    
+        return LIBROS
 
     def post(self):
-        #ver que dos lbros no se repitan con distintos id 
         libro = request.get_json()
         id = int(max(LIBROS.keys()))+1
         LIBROS[id] = libro
         return LIBROS[id]
-    
+
+
 
 
 

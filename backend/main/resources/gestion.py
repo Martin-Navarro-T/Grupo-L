@@ -21,46 +21,70 @@ COMENTARIOS = {
     2:{"cliente":"Olivia Rubio", "libro":"Redes de Datos III", "fecha":"28/04/2024", "mensaje":"Muy malo"},
 }
 class Notificaciones(Resource):
+    #def post(self):
+    #    notificacion = request.get_json()
+    #    id = int(max(NOTIFICACIONES.keys()))+1
+    #    NOTIFICACIONES[id] = notificacion 
+    #    return NOTIFICACIONES[id], "El mensaje fue enviado correctamente", 201
+
     def post(self):
         notificacion = request.get_json()
-        id = int(max(NOTIFICACIONES.keys()))+1
-        NOTIFICACIONES[id] = notificacion 
-        return NOTIFICACIONES[id], "El mensaje fue enviado correctamente", 201
+        id = int(max(NOTIFICACIONES.keys())) + 1
+        NOTIFICACIONES[id] = notificacion
+        return NOTIFICACIONES[id], 201
 
 class Configuracion(Resource):
-    def get(self):
-        return "Configuración: ", CONFIGURACIONES
- 
-    def put(self):
-    #ARREGLAR
+    def get(self,id):
+        if int(id) in CONFIGURACIONES:
+            return CONFIGURACIONES[int(id)] 
+        else:
+            return "No existe esa configuración", 404 
+
+    def put(self, id): 
         if int(id) in CONFIGURACIONES:
             configuracion = CONFIGURACIONES[int(id)]
             data = request.get_json()
             configuracion.update(data)
-            return "El mensaje fue actualizado correctamente", 201
+            return 201
         else:
             return 'La configuración no existe', 404
+
+    def delete(self,id):
+        if int(id) in CONFIGURACIONES:
+            del CONFIGURACIONES[int(id)]
+            return "La configuración fue eliminada con exito", 204
+        else: 
+            return "No existe esa configuración", 404
         
-class Valoracion(Resource):
+class Configuraciones(Resource):
     def get(self):
-        return "Valoraciones: ", VALORACIONES
+        return CONFIGURACIONES
     
     def post(self):
-            #ARREGLAR
+        configuracion = request.get_json()
+        id = int(max(CONFIGURACIONES.keys()))+1
+        CONFIGURACIONES[id] = configuracion
+        return CONFIGURACIONES[id], 201
+    
+class Valoracion(Resource):
+    def get(self):
+        return VALORACIONES
+    
+    def post(self):
         prestamo = request.get_json()
         id = int(max(VALORACIONES.keys()))+1
         VALORACIONES[id] = prestamo
-        return VALORACIONES[id], "La valoración ha sido registrada correctamente", 201
+        return VALORACIONES[id], 201
 
 class Comentarios(Resource):
     def get(self):
-        return "Comentarios: ", COMENTARIOS
+        return COMENTARIOS
     
     def post(self):
         prestamo = request.get_json()
         id = int(max(COMENTARIOS.keys()))+1
         COMENTARIOS[id] = prestamo
-        return COMENTARIOS[id],"El comentario ha sido registrado correctamente" ,201
+        return COMENTARIOS[id], 201
     
 
 

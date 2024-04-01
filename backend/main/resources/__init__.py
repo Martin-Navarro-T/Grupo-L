@@ -6,7 +6,9 @@ from .cuenta import Sign_in as Sign_inResources
 from .cuenta import Login as LoginResources
 from .prestamo import Prestamo as PrestamoResources
 from .prestamo import Prestamos as PrestamosResources
+
 from .gestion import Notificaciones as NotificacionesResources
 from .gestion import Comentarios as ComentariosResources
 from .gestion import Valoracion as ValoracionResources
 from .gestion import Configuracion as ConfiguracionResources 
+from .gestion import Configuraciones as ConfiguracionesResources

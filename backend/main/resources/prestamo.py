@@ -32,14 +32,13 @@ class Prestamo(Resource):
 
 class Prestamos(Resource):
     def get(self):
-        return "Prestamos: ", PRESTAMOS
+        return PRESTAMOS
     
     def post(self):
         prestamo = request.get_json()
         id = int(max(PRESTAMOS.keys()))+1
         PRESTAMOS[id] = prestamo
-        return PRESTAMOS[id], "El prestamo fue creado correctamente",  201
-
+        return PRESTAMOS[id],  201
     
     
     

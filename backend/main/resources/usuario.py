@@ -31,10 +31,10 @@ class Usuario(Resource):
 
 class Usuarios(Resource):
     def get(self):
-        return "Usuarios: ", USUARIOS
+        return USUARIOS
     
     def post(self):
         usuario = request.get_json()
         id = int(max(USUARIOS.keys()))+1
         USUARIOS[id] = usuario
-        return USUARIOS[id], "El usuario fue creado correctamente", 201
+        return USUARIOS[id], 201
