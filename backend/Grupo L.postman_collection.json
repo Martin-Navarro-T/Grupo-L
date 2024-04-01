@@ -360,74 +360,8 @@
 			]
 		},
 		{
-			"name": "Gestión",
+			"name": "Comentarios",
 			"item": [
-				{
-					"name": "Ver configuración",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/Configuracion",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Configuracion"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Ver todas las configuraciones",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/Configuraciones",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Configuraciones"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Ver todas las valoraciones",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/Valoracion",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Valoracion"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Ver todos los comentarios",
 					"request": {
@@ -445,68 +379,6 @@
 							"port": "5000",
 							"path": [
 								"Comentarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Agregar notificación",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"usuario\":\"Juan Perez\", \"mensaje\":\"Hoy es tu fecha de vencimiento\", \"hora\":\"28/04/2024\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/Notificaciones",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Notificaciones"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Agregar valoración",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"cliente\":\"Zoe Zo\", \"libro\":\"Muerte de la bruma\", \"fecha\":\"28/04/2024\", \"mensaje\":\"2 estrellas\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/Valoracion",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Valoracion"
 							]
 						}
 					},
@@ -538,92 +410,6 @@
 							"port": "5000",
 							"path": [
 								"Comentarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Agregar configuración",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"nombre\":\"pepe\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/Configuraciones",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Configuraciones"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar configuración",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"nombre\":\"FIN\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/Configuracion/3",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Configuracion",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar configuración",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/Configuracion/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Configuracion",
-								"1"
 							]
 						}
 					},
@@ -760,6 +546,235 @@
 							"port": "5000",
 							"path": [
 								"Libros"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Configuraciones",
+			"item": [
+				{
+					"name": "Ver configuración",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/Configuracion",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"Configuracion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver todas las configuraciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/Configuraciones",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"Configuraciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar configuración",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"pepe\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/Configuraciones",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"Configuraciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar configuración",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"FIN\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/Configuracion/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"Configuracion",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar configuración",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/Configuracion/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"Configuracion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notificaciones",
+			"item": [
+				{
+					"name": "Agregar notificación",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"usuario\":\"Juan Perez\", \"mensaje\":\"Hoy es tu fecha de vencimiento\", \"hora\":\"28/04/2024\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/Notificaciones",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"Notificaciones"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Valoraciones",
+			"item": [
+				{
+					"name": "Ver todas las valoraciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/Valoracion",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"Valoracion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar valoración",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"cliente\":\"Zoe Zo\", \"libro\":\"Muerte de la bruma\", \"fecha\":\"28/04/2024\", \"mensaje\":\"2 estrellas\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/Valoracion",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"Valoracion"
 							]
 						}
 					},
