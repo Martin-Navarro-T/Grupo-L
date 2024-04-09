@@ -1,5 +1,7 @@
 from flask_restful import Resource
 from flask import request
+from .. import db
+from main.models import UsuarioModel
 
 USUARIOS = {
     1:{"nombre":"Nahuel Molina", "telefono":"26155432", "email":"nahuel2001@gmail.com"},
@@ -8,10 +10,12 @@ USUARIOS = {
 
 class Usuario(Resource):
     def get(self,id):
-        if int(id) in USUARIOS:
+        """if int(id) in USUARIOS:
             return USUARIOS[int(id)]
         else:
-            return 'El usuario no existe', 404
+            return 'El usuario no existe', 404"""
+        usuario = db.session.query(UsuarioModel).get_or_404(id)
+        return usuario.to_json()
     
     def delete(self, id):
         if int(id) in USUARIOS:
