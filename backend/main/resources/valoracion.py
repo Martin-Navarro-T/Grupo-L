@@ -1,5 +1,7 @@
 from flask_restful import Resource
 from flask import request
+from .. import db
+from main.models import ValoracionesModel
 
 VALORACIONES = {
     1:{"cliente":"Martin Navarro", "libro":"Harry Potter", "fecha":"27/04/2024", "mensaje":"5 estrellas"},
@@ -8,7 +10,8 @@ VALORACIONES = {
 
 class Valoracion(Resource):
     def get(self):
-        return VALORACIONES
+        valoraciones = db.session.query(ValoracionesModel).all()
+        return valoraciones.to_json()
     
     def post(self):
         prestamo = request.get_json()
