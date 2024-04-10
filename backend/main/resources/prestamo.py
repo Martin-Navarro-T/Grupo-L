@@ -1,18 +1,24 @@
 from flask_restful import Resource
 from flask import request
+from .. import db
+from main.models import PrestamoModel
 
 PRESTAMOS = {
     1:{"cliente":"Martin Navarro", "libro":"Harry Potter", "vencimiento":"27/04/2024", "devuelto":"no"},
     2:{"cliente":"Zoe Choque", "libro":"Nacidos de la bruma", "vencimiento":"28/04/2024", "devuelto":"no"},
 }
-   
+
 #post crea y put actualiza
 class Prestamo(Resource):
-    def get(self,id):
-        if int(id) in PRESTAMOS:
-            return PRESTAMOS[int(id)]
-        else:
-            return 'El prestamo no existe', 404
+    #def get(self,id):
+    #    if int(id) in PRESTAMOS:
+    #        return PRESTAMOS[int(id)]
+    #    else:
+    #        return 'El prestamo no existe', 404
+    
+    def get(self):
+        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        return prestamo.to_json()
     
     def delete(self, id):
         if int(id) in PRESTAMOS:
@@ -31,6 +37,7 @@ class Prestamo(Resource):
             return 'El prestamo no existe', 404
 
 class Prestamos(Resource):
+    #falta mofificar el get de prestamos (proxima clase)
     def get(self):
         return PRESTAMOS
     
