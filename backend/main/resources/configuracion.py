@@ -1,5 +1,8 @@
 from flask_restful import Resource
 from flask import request
+from .. import db
+from main.models import ConfiguracionModel, ConfiguracionesModel
+
 
 CONFIGURACIONES = {
     1:{"nombre":"General"},
@@ -9,10 +12,13 @@ CONFIGURACIONES = {
 
 class Configuracion(Resource):
     def get(self,id):
-        if int(id) in CONFIGURACIONES:
+        """if int(id) in CONFIGURACIONES:
             return CONFIGURACIONES[int(id)] 
         else:
-            return "No existe esa configuración", 404 
+            return "No existe esa configuración", 404 """
+        configuracion = db.session.query(ConfiguracionModel).get_or_404(id)
+        return configuracion.to_json()
+
 
     def put(self, id): 
         if int(id) in CONFIGURACIONES:
@@ -32,7 +38,9 @@ class Configuracion(Resource):
         
 class Configuraciones(Resource):
     def get(self):
-        return CONFIGURACIONES
+        """return CONFIGURACIONES"""
+        configuraciones = db.session.query(ConfiguracionesModel).get_or_404(id)
+        return configuraciones.to_json()
     
     def post(self):
         configuracion = request.get_json()
