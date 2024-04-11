@@ -24,3 +24,4 @@ class Configuraciones(db.Model):
         }
         return configuracion_json
 
+

@@ -20,3 +20,4 @@ class Usuario(db.Model):
             'telefono':self.telefono
         }
         return usuario_json
+    

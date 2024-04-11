@@ -18,3 +18,4 @@ class Valoraciones(db.Model):
             'fecha_de_valoracion':str(self.fecha_de_valoración),
         }
         return usuario_json
+    

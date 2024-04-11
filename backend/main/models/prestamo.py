@@ -19,4 +19,3 @@ class Prestamo(db.Model):
             'estado':str(self.estado),
         }
         return usuario_json
-
