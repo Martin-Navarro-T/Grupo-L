@@ -31,7 +31,6 @@ def create_app():
     api.add_resource(resources.PrestamosResources, "/Prestamos")
     api.add_resource(resources.PrestamoResources, "/Prestamo/<id>")   
     api.add_resource(resources.NotificacionesResources, "/Notificaciones")
-    api.add_resource(resources.ComentariosResources, "/Comentarios")
     api.add_resource(resources.ValoracionResources, "/Valoracion")
     api.add_resource(resources.ConfiguracionResources, "/Configuracion")
     api.init_app(app)
