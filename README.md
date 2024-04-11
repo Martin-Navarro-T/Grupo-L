@@ -1,4 +1,4 @@
-# Grupo-CRIM
+# Grupo-L
 ## Integrantes
 - Martin Navarro
 - Ian Olmedo
