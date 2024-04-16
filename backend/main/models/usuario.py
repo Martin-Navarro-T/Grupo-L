@@ -1,6 +1,6 @@
 from .. import db
 
-class Usuario(db.Model):
+class Usuarios(db.Model):
     id_usuario = db.Column(db.Integer, primary_key=True)
     nombre_completo = db.Column(db.String(100), nullable=False)
     direccion = db.Column(db.String(100), nullable=False)
@@ -20,3 +20,22 @@ class Usuario(db.Model):
             'telefono':self.telefono
         }
         return usuario_json
+
+    @staticmethod
+    def from_json(usuario_json):
+        id_usuario = usuario_json.get("id_usuario")
+        nombre_completo = usuario_json.get("nombre_completo")
+        direccion = usuario_json.get("direccion")
+        dni = usuario_json.get("dni")
+        email = usuario_json.get("email")
+        password = usuario_json.get("password")
+        telefono = usuario_json.get("telefono")
+        return Usuarios(
+            id_usuario = id_usuario,
+            nombre_completo = nombre_completo,
+            direccion = direccion,
+            dni = dni,
+            email = email,
+            password = password,
+            telefono = telefono
+        )
