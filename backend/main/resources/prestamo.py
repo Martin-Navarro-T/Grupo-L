@@ -1,52 +1,39 @@
 from flask_restful import Resource
-from flask import request
+from flask import request, jsonify
 from .. import db
 from main.models import PrestamoModel
 
-PRESTAMOS = {
-    1:{"cliente":"Martin Navarro", "libro":"Harry Potter", "vencimiento":"27/04/2024", "devuelto":"no"},
-    2:{"cliente":"Zoe Choque", "libro":"Nacidos de la bruma", "vencimiento":"28/04/2024", "devuelto":"no"},
-}
-
 #post crea y put actualiza
+
 class Prestamo(Resource):
-    #def get(self,id):
-    #    if int(id) in PRESTAMOS:
-    #        return PRESTAMOS[int(id)]
-    #    else:
-    #        return 'El prestamo no existe', 404
-    
-    def get(self):
+    def get(self, id):
         prestamo = db.session.query(PrestamoModel).get_or_404(id)
-        return prestamo.to_json()
+        return prestamo.to_json(), 201
     
     def delete(self, id):
-        if int(id) in PRESTAMOS:
-            del PRESTAMOS[(int(id))]
-            return "El prestamo fue eliminado", 204
-        else:
-            return 'El prestamo no existe', 404
-
+        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        db.session.delete(prestamo)
+        db.session.commit()
+        return 'El prestamo fue eliminado correctamente', 204
+    
     def put(self, id):
-        if int(id) in PRESTAMOS:
-            prestamo = PRESTAMOS[int(id)]
-            data = request.get_json()
-            prestamo.update(data)
-            return "El prestamo fue actualizado", 201
-        else:
-            return 'El prestamo no existe', 404
+        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        data = request.get_json().items()
+        for key, value in data:
+            setattr(prestamo, key, value)
+        db.session.add(prestamo)
+        db.session.commit()
+        return prestamo.to_json(), 201
+
 
 class Prestamos(Resource):
-    #falta mofificar el get de prestamos (proxima clase)
     def get(self):
-        return PRESTAMOS
+        prestamos = db.session.query(PrestamoModel).all()
+        return jsonify([prestamo.to_json() for prestamo in prestamos])
     
     def post(self):
-        prestamo = request.get_json()
-        id = int(max(PRESTAMOS.keys()))+1
-        PRESTAMOS[id] = prestamo
-        return PRESTAMOS[id],  201
-    
-    
-    
+        prestamo = PrestamoModel.from_json(request.get_json())
+        db.session.add(prestamo)
+        db.session.commit()
+        return prestamo.to_json(), 201
     

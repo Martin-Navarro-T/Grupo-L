@@ -35,6 +35,7 @@ class Libro(db.Model):
             'stock':self.stock
         }
         return libro_json
+
     """""
    
 
@@ -55,3 +56,4 @@ class Libro(db.Model):
                     descripcion=descripcion,
                     stock=stock,
                     )
+
