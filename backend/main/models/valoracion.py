@@ -1,6 +1,5 @@
 from .. import db
 from datetime import datetime
-from . import LibroModel, UsuarioModel
 
 class Valoraciones(db.Model):
     id_valoracion = db.Column(db.Integer, primary_key=True)
