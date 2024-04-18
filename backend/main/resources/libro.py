@@ -27,6 +27,8 @@ class Libro(Resource):
         return "El libro fue eliminado correctamente", 204
     
     
+    
+    
 
 class Libros(Resource):
     def get(self):

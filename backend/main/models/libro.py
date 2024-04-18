@@ -22,6 +22,7 @@ class Libro(db.Model):
         }
         return libro_json
     
+    
     """""
     def to_json_short(self):
         libro_json = {
