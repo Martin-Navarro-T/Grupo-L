@@ -40,9 +40,3 @@ class Libros(Resource):
         db.session.add(libro)
         db.session.commit()
         return libro.to_json(), 201
-
-
-
-
-
-
