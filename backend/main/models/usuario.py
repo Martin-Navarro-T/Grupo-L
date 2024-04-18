@@ -39,3 +39,4 @@ class Usuarios(db.Model):
             password = password,
             telefono = telefono
         )
+
