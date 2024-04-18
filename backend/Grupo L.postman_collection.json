@@ -17,7 +17,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Usuarios",
+							"raw": "http://127.0.0.1:6003/Usuarios",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -25,7 +25,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Usuarios"
 							]
@@ -39,7 +39,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Usuario/2",
+							"raw": "http://127.0.0.1:6003/Usuario/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -47,7 +47,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Usuario",
 								"2"
@@ -75,7 +75,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Rodrigo Lopez\",\n    \"telefono\": \"261912451\",\n    \"email\": \"r.lopez666@gmail.com\"\n}",
+							"raw": "{\n    \"id_usuario\": 2,\n    \"nombre_completo\": \"Ian Maximo Olmedo\",\n    \"direccion\": \"Las Heras\",\n    \"dni\": 45716948,\n    \"email\": \"ian.olmedo@alumno.um.edu.ar\",\n    \"password\": \"ian1234\",\n    \"telefono\": 261657895\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -83,7 +83,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Usuario/2",
+							"raw": "http://127.0.0.1:6003/Usuario/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -91,7 +91,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Usuario",
 								"2"
@@ -106,7 +106,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Usuario/2",
+							"raw": "http://127.0.0.1:6003/Usuario/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -114,10 +114,10 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Usuario",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -130,7 +130,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Rodrigo Lopez\",\n    \"telefono\": \"261912451\",\n    \"email\": \"r.lopez666@gmail.com\"\n}",
+							"raw": "{\n        \"direccion\": \"Palmares\",\n        \"dni\": 45564852,\n        \"email\": \"zoe.choque@alumno.um.edu.ar\",\n        \"id_usuario\": 3,\n        \"nombre_completo\": \"Mariela Zoe Camila Choque\",\n        \"password\": \"emmacorazondemelon\",\n        \"telefono\": 26136584\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -138,7 +138,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Usuarios",
+							"raw": "http://127.0.0.1:6003/Usuarios",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -146,7 +146,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Usuarios"
 							]
@@ -165,7 +165,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Prestamo/1",
+							"raw": "http://127.0.0.1:6003/Prestamo/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -173,7 +173,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Prestamo",
 								"1"
@@ -188,7 +188,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Prestamos",
+							"raw": "http://127.0.0.1:6003/Prestamos",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -196,7 +196,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Prestamos"
 							]
@@ -242,7 +242,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Prestamo/2",
+							"raw": "http://127.0.0.1:6003/Prestamo/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -250,7 +250,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Prestamo",
 								"2"
@@ -302,7 +302,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"Martina Rizzotti\", \"telefono\":\"26155432\", \"email\":\"belen10@gmail.com\"}",
+							"raw": "{        \"direccion\": \"Guaymallen\",\n        \"dni\": 45716948,\n        \"email\": \"rey.olmedo@alumno.um.edu.ar\",\n        \"id_usuario\": 3,\n        \"nombre_completo\": \"Reynier Pesado Olmedo\",\n        \"password\": \"pesado123\",\n        \"telefono\": 261657895\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -310,7 +310,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Login",
+							"raw": "http://127.0.0.1:6003/Login",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -318,7 +318,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Login"
 							]
@@ -333,7 +333,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"Valentina Gomez\", \"telefono\":\"26155432\", \"email\":\"vg2001@gmail.com\"}",
+							"raw": "{\n    \"id_usuario\": 4,\n    \"nombre_completo\": \"Lucho Toneatti\",\n    \"direccion\": \"Guaymallen\",\n    \"dni\": 45716948,\n    \"email\": \"lucho.toneatti@alumno.um.edu.ar\",\n    \"password\": \"repesado123\",\n    \"telefono\": 261657895\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -341,7 +341,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Sign_in",
+							"raw": "http://127.0.0.1:6003/Sign_in",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -349,67 +349,9 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Sign_in"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Comentarios",
-			"item": [
-				{
-					"name": "Ver todos los comentarios",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/Comentarios",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Comentarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Agregar comentario",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"cliente\":\"Olivia Rodrigo\", \"libro\":\"Redes de Datos II\", \"fecha\":\"28/04/2024\", \"mensaje\":\"Muy Bueno\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/Comentarios",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"Comentarios"
 							]
 						}
 					},
@@ -426,7 +368,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Libro/1",
+							"raw": "http://127.0.0.1:6003/Libro/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -434,7 +376,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Libro",
 								"1"
@@ -449,7 +391,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Libros",
+							"raw": "http://127.0.0.1:6003/Libros",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -457,7 +399,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Libros"
 							]
@@ -503,7 +445,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Libro/1",
+							"raw": "http://127.0.0.1:6003/Libro/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -511,7 +453,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Libro",
 								"1"
@@ -527,7 +469,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"titulo\":\"Fisica I\", \"editorial\":\"planeta\", \"autor\":\"Reynier Lopez\"}",
+							"raw": "    {\n        \"año_de_publicacion\": \"28-06-2006\",\n        \"descripcion\": \"novela\",\n        \"editorial\": \"Salamandra\",\n        \"genero\": \"Fantasia\",\n        \"id_libro\": 5,\n        \"stock\": 0,\n        \"titulo\": \"Percy Jackson y el mar de los monstruos\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -535,7 +477,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Libros",
+							"raw": "http://127.0.0.1:6003/Libros",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -543,7 +485,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Libros"
 							]
@@ -562,7 +504,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Configuracion",
+							"raw": "http://127.0.0.1:6003/Configuracion/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -570,9 +512,10 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
-								"Configuracion"
+								"Configuracion",
+								"1"
 							]
 						}
 					},
@@ -584,7 +527,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Configuraciones",
+							"raw": "http://127.0.0.1:6003/Configuraciones",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -592,7 +535,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Configuraciones"
 							]
@@ -607,7 +550,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"pepe\"}",
+							"raw": "    {\n        \"id_configuracion\": 3,\n        \"id_usuario\": 2,\n        \"nombre_configuracion\": \"Tamaño de pagina \",\n        \"valor_configuracion\": \"3\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -615,7 +558,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Configuraciones",
+							"raw": "http://127.0.0.1:6003/Configuraciones",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -623,7 +566,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Configuraciones"
 							]
@@ -638,7 +581,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"nombre\":\"FIN\"}",
+							"raw": "    {\n        \"id_configuracion\": 2,\n        \"id_usuario\": 2,\n        \"nombre_configuracion\": \"Tamaño de imagen\",\n        \"valor_configuracion\": \"2\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -646,7 +589,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Configuracion/3",
+							"raw": "http://127.0.0.1:6003/Configuracion/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -654,10 +597,10 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Configuracion",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -669,7 +612,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Configuracion/1",
+							"raw": "http://127.0.0.1:6003/Configuracion/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -677,7 +620,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Configuracion",
 								"1"
@@ -775,6 +718,142 @@
 							"port": "5000",
 							"path": [
 								"Valoracion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autores",
+			"item": [
+				{
+					"name": "Ver todos los autores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:6003/Autores",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "6003",
+							"path": [
+								"Autores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver autor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:6003/Autor/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "6003",
+							"path": [
+								"Autor",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar autor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_autor\": 1,\n    \"nombre_completo\": \"Martin Salomon Fierro\",\n    \"nacionalidad\": \"Argentina\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:6003/Autor/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "6003",
+							"path": [
+								"Autor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar autor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:6003/Autor/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "6003",
+							"path": [
+								"Autor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar autor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_autor\": 4,\n    \"nombre_completo\": \"Martin LutherKing \",\n    \"nacionalidad\": \"Estados Unidos\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:6003/Autores",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "6003",
+							"path": [
+								"Autores"
 							]
 						}
 					},

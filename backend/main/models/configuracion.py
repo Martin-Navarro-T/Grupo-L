@@ -4,12 +4,13 @@ class Configuracion(db.Model):
     id_configuracion = db.Column(db.Integer, primary_key=True)
     nombre_configuracion = db.Column(db.String(100), nullable=False)
     valor_configuracion = db.Column(db.String(100), nullable=False)
-    id_usuario = db.Column(db.Integer, nullable=False)
-
+    id_usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id_usuario"), nullable=False)
+    #Relación uno a uno
+    #usuario = db.relationship("Usuarios", uselist=False, back_populates="configuracion", cascade="all, delete-orphan", single_parent=True)
 
     def to_json(self):
         configuracion_json={
-            'id_configuracion':self.id,
+            'id_configuracion':self.id_configuracion,
             'nombre_configuracion':str(self.nombre_configuracion),
             "valor_configuracion":str(self.valor_configuracion),
             "id_usuario":self.id_usuario
