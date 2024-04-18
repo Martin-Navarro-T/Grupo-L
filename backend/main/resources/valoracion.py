@@ -1,5 +1,5 @@
 from flask_restful import Resource
-from flask import request
+from flask import request,jsonify
 from .. import db
 from main.models import ValoracionesModel
 
@@ -11,10 +11,10 @@ VALORACIONES = {
 class Valoracion(Resource):
     def get(self):
         valoraciones = db.session.query(ValoracionesModel).all()
-        return valoraciones.to_json()
+        return jsonify([valoracion.to_json() for valoracion in valoraciones])
     
     def post(self):
-        prestamo = request.get_json()
-        id = int(max(VALORACIONES.keys()))+1
-        VALORACIONES[id] = prestamo
-        return VALORACIONES[id], 201
+        valoracion = ValoracionesModel.from_json(request.get_json())
+        db.session.add(valoracion)
+        db.session.commit
+        return valoracion.to_json(), 201

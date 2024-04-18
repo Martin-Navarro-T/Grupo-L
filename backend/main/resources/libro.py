@@ -1,46 +1,45 @@
 from flask_restful import Resource
-from flask import request, jsonify
-from .. import db
-from main.models import LibroModel
+from flask import request
 
+LIBROS = {
+    1:{"titulo":"Fisica II", "editorial":"planeta", "autor":"Ian Lopez"},
+    2:{"titulo":"Matematica", "editorial":"hp.edu", "autor":"Martin Olmedo"},
+}
 
 class Libro(Resource):
     def get(self,id):
-    
-        libro = db.session.query(LibroModel).get_or_404(id)
-        return libro.to_json(), 201 
+        if int(id) in LIBROS:
+            return LIBROS[int(id)] 
+        else:
+            return "No existe ese libro", 404 
         
     def put(self,id):
-        libro = db.session.query(LibroModel).get_or_404(id)
-        data = request.get_json().items()
-        for key, value in data:
-            setattr(libro, key, value)
-        db.session.add(libro)
-        db.session.commit()
-        return libro.to_json() , 201
+        if int(id) in LIBROS:
+            libro = LIBROS[int(id)]
+            data = request.get_json()
+            libro.update(data)
+            return "El libro fue actualizado con exito"
+        else:
+            "No existe el libro", 404
 
 
     def delete(self,id):
-        libro = db.session.query(LibroModel).get_or_404(id)
-        db.session.delete(libro)
-        db.session.commit()
-        return "El libro fue eliminado correctamente", 204
-    
-    
-    
-    
+        if int(id) in LIBROS:
+            del LIBROS[int(id)]
+            return "El libro fue eliminado con exito", 204 
+        else: 
+            return "No existe el libro",404
+        
 
 class Libros(Resource):
     def get(self):
-        libros = db.session.query(LibroModel).all()
-        return jsonify([libro.to_json() for libro in libros])
+        return LIBROS
 
     def post(self):
-        libro = LibroModel.from_json(request.get_json())
-        db.session.add(libro)
-        db.session.commit()
-        return libro.to_json(), 201
-
+        libro = request.get_json()
+        id = int(max(LIBROS.keys()))+1
+        LIBROS[id] = libro
+        return LIBROS[id]
 
 
 
