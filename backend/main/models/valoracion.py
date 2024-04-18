@@ -3,20 +3,24 @@ from datetime import datetime
 
 class Valoraciones(db.Model):
     id_valoracion = db.Column(db.Integer, primary_key=True)
-    id_libros = db.Column(db.Integer, nullable=False)
-    id_usuario = db.Column(db.Integer, nullable=False)
+    id_libro = db.Column(db.Integer, db.ForeignKey("libro.id_libro"), nullable=False)
+    id_usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id_usuario"), nullable=False)
     valoracion = db.Column(db.Integer, nullable=False)
     comentario = db.Column(db.String(100), nullable=False)
     fecha_de_valoración = db.Column(db.DateTime, nullable=False)
-
+    # Relación uno a muchos
+    #usuario = db.relationship("Usuarios", back_populates="valoraciones", uselist=False, single_parent=True)
+    #Relación uno a uno
+    #libro = db.relationship("Libro", uselist=False, back_populates="valoracion", cascade="all, delete-orphan", single_parent=True)
+    
     def to_json(self):
         valoracion_json={
             'id_valoracion':self.id_valoracion,
-            'id_libros':self.id_libros,
+            'id_libro':self.id_libro,
             'id_usuario':self.id_usuario,
             'valoracion':self.valoracion,
             'comentario':str(self.comentario),
-            'fecha_de_valoracion':str(self.fecha_de_valoración.strftime("\d-\m-%Y")),
+            'fecha_de_valoracion':str(self.fecha_de_valoracion.strftime("%d-%m-%Y")),
         }
         return valoracion_json
 
@@ -27,11 +31,11 @@ class Valoraciones(db.Model):
         id_usuario = valoracion_json.get("id_usuario")
         valoracion = valoracion_json.get("valoracion")
         comentario = valoracion_json.get("comentario")
-        fecha_de_valoracion = valoracion_json("fecha_de_valoracion")
+        fecha_de_valoracion = datetime.strptime(valoracion_json.get('fecha_de_valoracion'), '%d-%m-%Y')
         return Valoraciones(
             id_valoracion = id_valoracion,
-            id_libros = id_libro,
-            id_usuarios = id_usuario,
+            id_libro = id_libro,
+            id_usuario = id_usuario,
             valoracion = valoracion,
             comentario = comentario,
             fecha_de_valoracion = fecha_de_valoracion

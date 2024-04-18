@@ -26,9 +26,6 @@ class Libro(Resource):
         db.session.commit()
         return "El libro fue eliminado correctamente", 204
     
-    
-    
-    
 
 class Libros(Resource):
     def get(self):

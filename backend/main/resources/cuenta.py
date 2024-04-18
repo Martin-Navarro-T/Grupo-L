@@ -1,22 +1,19 @@
 from flask_restful import Resource
 from flask import request
-
-CUENTAS = {
-    1:{"nombre":"Nahuel Vicente", "telefono":"26155432", "email":"nahuel2001@gmail.com"},
-    2:{"nombre":"Olivia Rubio", "telefono":"261909451", "email":"o.rubia34@gmail.com"},
-}
+from .. import db
+from main.models import UsuarioModel
 
 class Sign_in(Resource):
-    def post (self):
-        cuenta = request.get_json()
-        id = int(max(CUENTAS.keys()))+1
-        CUENTAS[id] = cuenta
-        return "La cuenta ha sido creada con exito!"
-    
+    def post(self):
+        cuenta = UsuarioModel.from_json(request.get_json())
+        db.session.add(cuenta)
+        db.session.commit
+        return cuenta.to_json(), 201
+
 class Login(Resource):
-    def post (self):
-        cuenta = request.get_json()
-        id = int(max(CUENTAS.keys()))+1
-        CUENTAS[id] = cuenta
-        return "Ha podido iniciar sesión!"
+    def post(self):
+        cuenta = UsuarioModel.from_json(request.get_json())
+        db.session.add(cuenta)
+        db.session.commit
+        return cuenta.to_json(), 201
 
