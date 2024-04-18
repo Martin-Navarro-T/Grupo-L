@@ -9,15 +9,16 @@ class Configuracion(db.Model):
 
     def to_json(self):
         configuracion_json={
-            'id':self.id,
-            'configuracion':str(self.configuracion),
-            "caracteristicas":str(self.caracteristicas),
+            'id_configuracion':self.id,
+            'nombre_configuracion':str(self.nombre_configuracion),
+            "valor_configuracion":str(self.valor_configuracion),
+            "id_usuario":self.id_usuario
         }
         return configuracion_json
     
     def from_json(configuracion_json):
         id_configuracion = configuracion_json.get("id_configuracion")
-        nombre_configuracion = configuracion_json.get("configuracion")
+        nombre_configuracion = configuracion_json.get("nombre_configuracion")
         id_usuario = configuracion_json.get("id_usuario")
         valor_configuracion = configuracion_json.get("valor_configuracion")
         

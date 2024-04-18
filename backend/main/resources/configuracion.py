@@ -1,14 +1,9 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
-from main.models import ConfiguracionModel, ConfiguracionesModel
+from main.models import ConfiguracionModel
 
 
-CONFIGURACIONES = {
-    1:{"nombre":"General"},
-    2:{"nombre":"Inicio"},
-    3:{"nombre":"Buscar"}
-}
 
 class Configuracion(Resource):
     def get(self,id):
@@ -34,11 +29,11 @@ class Configuracion(Resource):
         
 class Configuraciones(Resource):
     def get(self):
-        configuraciones = db.session.query(ConfiguracionesModel).all()
+        configuraciones = db.session.query(ConfiguracionModel).all()
         return jsonify([configuracion.to_json() for configuracion in configuraciones])
     
     def post(self):
-        configuracion = ConfiguracionesModel.from_json(request.get_json())
+        configuracion = ConfiguracionModel.from_json(request.get_json())
         db.session.add(configuracion)
         db.session.commit()
         return configuracion.to_json(), 201
