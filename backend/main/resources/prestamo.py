@@ -36,3 +36,4 @@ class Prestamos(Resource):
         db.session.add(prestamo)
         db.session.commit()
         return prestamo.to_json(), 201
+    

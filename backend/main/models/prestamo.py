@@ -1,4 +1,6 @@
 from .. import db
+import json 
+from datetime import datetime
 
 class Prestamo(db.Model):
     id_prestamo = db.Column(db.Integer, primary_key=True)
@@ -14,19 +16,8 @@ class Prestamo(db.Model):
             'id_prestamo':self.id_prestamo,
             'id_usuario':self.id_usuario,
             'id_libros':self.id_libros,
-            'fecha_de_entrega':str(self.fecha_de_entrega.strftime("\d-\m-%Y")),
-            'fecha_de_vencimiento':str(self.fecha_de_vencimiento.strftime("\d-\m-%Y")),
-            'estado':str(self.estado),
-        }
-        return prestamo_json
-
-    def to_json_short(self):
-        prestamo_json = {
-            'id_prestamo':self.id_prestamo,
-            'id_usuario':self.id_usuario,
-            'id_libros':self.id_libros,
-            'fecha_de_entrega':str(self.fecha_de_entrega),
-            'fecha_de_vencimiento':str(self.fecha_de_vencimiento),
+            'fecha_de_entrega':str(self.fecha_de_entrega.strftime("%d-%m-%Y")),
+            'fecha_de_vencimiento':str(self.fecha_de_vencimiento.strftime("%d-%m-%Y")),
             'estado':str(self.estado),
         }
         return prestamo_json
@@ -37,8 +28,8 @@ class Prestamo(db.Model):
         id_prestamo = prestamo_json.get('id_prestamo')
         id_usuario = prestamo_json.get('id_usuario')
         id_libros = prestamo_json.get('id_libros')
-        fecha_de_prestamo = prestamo_json.get('fecha_de_prestamo')
-        fecha_de_vencimiento = prestamo_json.get('fecha_de_vencimiento')
+        fecha_de_prestamo = datetime.strptime(prestamo_json.get('fecha_de_prestamo'), '%d-%m-%Y')
+        fecha_de_vencimiento = datetime.strptime(prestamo_json.get('fecha_de_vencimiento'), '%d-%m-%Y')
         estado = prestamo_json.get('estado')
         return Prestamo(id_prestamo=id_prestamo,
                     id_usuario=id_usuario,
@@ -47,3 +38,16 @@ class Prestamo(db.Model):
                     fecha_de_vencimiento=fecha_de_vencimiento,
                     estado=estado
                     )
+
+'''
+    def to_json_short(self):
+        prestamo_json = {
+            'id_prestamo':self.id_prestamo,
+            'id_usuario':self.id_usuario,
+            'id_libros':self.id_libros,
+            'fecha_de_entrega':str(self.fecha_de_entrega),
+            'fecha_de_vencimiento':str(self.fecha_de_vencimiento),
+            'estado':str(self.estado),
+        }
+        return prestamo_json
+''' 
