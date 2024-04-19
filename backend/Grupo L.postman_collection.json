@@ -130,9 +130,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-
 							"raw": "{\n        \"direccion\": \"Mendoza\",\n        \"dni\": 45564852,\n        \"email\": \"zoe.choque@alumno.um.edu.ar\",\n        \"id_usuario\": 1,\n        \"nombre_completo\": \"Mariela Zoe Camila Choque\",\n        \"password\": \"emmacorazondemelon\",\n        \"telefono\": 26136584\n}",
-
 							"options": {
 								"raw": {
 									"language": "json"
@@ -471,9 +469,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-
 							"raw": "    {\n        \"id_libro\": 5,\n        \"titulo\": \"Percy Jackson y el mar de los monstruos\",\n        \"genero\": \"Fantasia\",\n        \"editorial\": \"Salamandra\",\n        \"año_de_publicacion\": \"28-06-2006\",\n        \"descripcion\": \"novela\",\n        \"stock\": 0\n    }",
-              
 							"options": {
 								"raw": {
 									"language": "json"
@@ -653,7 +649,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Notificaciones",
+							"raw": "http://127.0.0.1:6003/Notificaciones",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -661,7 +657,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Notificaciones"
 							]
@@ -839,7 +835,6 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-
 							"raw": "{\n    \"id_autor\": 3,\n    \"nombre_completo\": \"Martin LutherKing \",\n    \"nacionalidad\": \"Estados Unidos\"\n}",
 							"options": {
 								"raw": {
