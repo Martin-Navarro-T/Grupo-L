@@ -2,6 +2,7 @@ from .. import db
 from datetime import datetime
 
 class Valoraciones(db.Model):
+    __tablename__ = 'valoraciones'
     id_valoracion = db.Column(db.Integer, primary_key=True)
     id_libro = db.Column(db.Integer, db.ForeignKey("libro.id_libro"), nullable=False)
     id_usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id_usuario"), nullable=False)
@@ -26,6 +27,9 @@ class Valoraciones(db.Model):
 
     @staticmethod
     def from_json(valoracion_json):
+        print(valoracion_json)
+        for i in valoracion_json:
+            print(type(i))
         id_valoracion = valoracion_json.get("id_valoracion")
         id_libro = valoracion_json.get("id_libro")
         id_usuario = valoracion_json.get("id_usuario")
