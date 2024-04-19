@@ -1,41 +1,39 @@
 from flask_restful import Resource
-from flask import request
+from flask import request, jsonify
+from .. import db
+from main.models import ConfiguracionModel
 
-CONFIGURACIONES = {
-    1:{"nombre":"General"},
-    2:{"nombre":"Inicio"},
-    3:{"nombre":"Buscar"}
-}
+
 
 class Configuracion(Resource):
     def get(self,id):
-        if int(id) in CONFIGURACIONES:
-            return CONFIGURACIONES[int(id)] 
-        else:
-            return "No existe esa configuración", 404 
+        configuracion = db.session.query(ConfiguracionModel).get_or_404(id)
+        return configuracion.to_json(), 201
+
 
     def put(self, id): 
-        if int(id) in CONFIGURACIONES:
-            configuracion = CONFIGURACIONES[int(id)]
-            data = request.get_json()
-            configuracion.update(data)
-            return 201
-        else:
-            return 'La configuración no existe', 404
+        configuracion = db.session.query(ConfiguracionModel).get_or_404(id)
+        data = request.get_json().items()
+        for key, values in data:
+            setattr(configuracion, key, values)
+        db.session.add(configuracion)
+        db.session.commit() 
+        return configuracion.to_json(), 201
+
 
     def delete(self,id):
-        if int(id) in CONFIGURACIONES:
-            del CONFIGURACIONES[int(id)]
-            return "La configuración fue eliminada con exito", 204
-        else: 
-            return "No existe esa configuración", 404
+        configuracion = db.session.query(ConfiguracionModel).get_or_404(id)
+        db.session.delete(configuracion)
+        db.session.commit()
+        return 'Ha sido eliminado correctamente', 204
         
 class Configuraciones(Resource):
     def get(self):
-        return CONFIGURACIONES
+        configuraciones = db.session.query(ConfiguracionModel).all()
+        return jsonify([configuracion.to_json() for configuracion in configuraciones])
     
     def post(self):
-        configuracion = request.get_json()
-        id = int(max(CONFIGURACIONES.keys()))+1
-        CONFIGURACIONES[id] = configuracion
-        return CONFIGURACIONES[id], 201
+        configuracion = ConfiguracionModel.from_json(request.get_json())
+        db.session.add(configuracion)
+        db.session.commit()
+        return configuracion.to_json(), 201
