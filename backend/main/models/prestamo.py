@@ -32,13 +32,13 @@ class Prestamo(db.Model):
         id_prestamo = prestamo_json.get('id_prestamo')
         id_usuario = prestamo_json.get('id_usuario')
         id_libros = prestamo_json.get('id_libros')
-        fecha_de_prestamo = datetime.strptime(prestamo_json.get('fecha_de_prestamo'), '%d-%m-%Y')
+        fecha_de_entrega = datetime.strptime(prestamo_json.get('fecha_de_entrega'), '%d-%m-%Y')
         fecha_de_vencimiento = datetime.strptime(prestamo_json.get('fecha_de_vencimiento'), '%d-%m-%Y')
         estado = prestamo_json.get('estado')
         return Prestamo(id_prestamo=id_prestamo,
                     id_usuario=id_usuario,
                     id_libros=id_libros,
-                    fecha_de_prestamo=fecha_de_prestamo,
+                    fecha_de_entrega=fecha_de_entrega,
                     fecha_de_vencimiento=fecha_de_vencimiento,
                     estado=estado
                     )

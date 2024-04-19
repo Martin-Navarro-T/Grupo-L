@@ -1,6 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
+from datetime import datetime
 from main.models import LibroModel
 
 
@@ -14,7 +15,11 @@ class Libro(Resource):
         libro = db.session.query(LibroModel).get_or_404(id)
         data = request.get_json().items()
         for key, value in data:
-            setattr(libro, key, value)
+            if key == 'año_de_publicacion':
+                año_de_publicacion = datetime.strptime(value, '%d-%m-%Y')
+                setattr(libro, key, año_de_publicacion)
+            else:
+                setattr(libro, key, value)
         db.session.add(libro)
         db.session.commit()
         return libro.to_json() , 201
