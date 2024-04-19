@@ -8,7 +8,14 @@ class Usuarios(db.Model):
     email = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
-
+    #Relación uno a uno
+    #configuracion = db.relationship("Configuracion", uselist=False, back_populates="usuario", cascade="all, delete-orphan", single_parent=True)
+    # Relación uno a muchos
+    #prestamos = db.relationship("Prestamo", back_populates="usuario", cascade="all, delete-orphan")
+    # Relación uno a muchos
+    #valoraciones = db.relationship("Valoraciones", back_populates="usuario", cascade="all, delete-orphan")
+    
+    
     def to_json(self):
         usuario_json={
             'id_usuario':self.id_usuario,
