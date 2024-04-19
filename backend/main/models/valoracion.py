@@ -7,7 +7,7 @@ class Valoraciones(db.Model):
     id_usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id_usuario"), nullable=False)
     valoracion = db.Column(db.Integer, nullable=False)
     comentario = db.Column(db.String(100), nullable=False)
-    fecha_de_valoración = db.Column(db.DateTime, nullable=False)
+    fecha_de_valoracion = db.Column(db.DateTime, nullable=False)
     # Relación uno a muchos
     #usuario = db.relationship("Usuarios", back_populates="valoraciones", uselist=False, single_parent=True)
     #Relación uno a uno
