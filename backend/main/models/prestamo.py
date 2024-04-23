@@ -14,6 +14,9 @@ class Prestamo(db.Model):
     # Relación uno a muchos
     libros = db.relationship("Libro", back_populates="prestamo")
 
+    def __repr__(self):
+        return '<Prestamo: %r %r >' % (self.id_usuario, self.estado)
+    
     #Convertir objeto en JSON
     def to_json(self):
         prestamo_json={

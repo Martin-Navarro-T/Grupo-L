@@ -15,7 +15,8 @@ class Usuarios(db.Model):
     # Relación uno a muchos
     valoraciones = db.relationship("Valoraciones", back_populates="usuario", cascade="all, delete-orphan")
 
-    
+    def __repr__(self):
+        return '<Usuarios: %r >' % (self.nombre_completo)
     
     def to_json(self):
         usuario_json={
