@@ -13,6 +13,7 @@ class Prestamo(db.Model):
     usuario = db.relationship("Usuarios", back_populates="prestamos", uselist=False, single_parent=True)
     # Relación uno a muchos
     libros = db.relationship("Libro", back_populates="prestamo")
+
     #Convertir objeto en JSON
     def to_json(self):
         prestamo_json={

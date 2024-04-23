@@ -14,6 +14,7 @@ class Usuarios(db.Model):
     prestamos = db.relationship("Prestamo", back_populates="usuario", cascade="all, delete-orphan")
     # Relación uno a muchos
     valoraciones = db.relationship("Valoraciones", back_populates="usuario", cascade="all, delete-orphan")
+
     
     
     def to_json(self):

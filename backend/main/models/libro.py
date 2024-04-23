@@ -16,7 +16,6 @@ class Libro(db.Model):
     # Relación muchos a muchos (tabla intermedia)
     autor = db.relationship('Autor' , secondary = 'libros_autores', back_populates = 'libro')
 
-
     def to_json(self):
         libro_json={
             'id_libro':self.id_libro,

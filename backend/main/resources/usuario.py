@@ -11,7 +11,7 @@ class Usuario(Resource):
     def delete(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
         db.session.delete(usuario)
-        db.session.commit
+        db.session.commit()
         return 'Ha sido eliminado correctamente', 204
     
     def put(self, id):
@@ -20,7 +20,7 @@ class Usuario(Resource):
         for key, values in data:
             setattr(usuario, key, values)
         db.session.add(usuario)
-        db.session.commit
+        db.session.commit()
         return usuario.to_json(), 201
 
 class Usuarios(Resource):
@@ -31,5 +31,5 @@ class Usuarios(Resource):
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json())
         db.session.add(usuario)
-        db.session.commit
+        db.session.commit()
         return usuario.to_json(), 201
