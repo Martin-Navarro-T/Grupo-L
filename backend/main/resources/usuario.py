@@ -45,12 +45,31 @@ class Usuarios(Resource):
             usuarios=usuarios.outerjoin(UsuarioModel.prestamos).group_by(UsuarioModel.id).having(func.count(PrestamoModel.id) >= int(request.args.get('nrPrestamos')))
 
         #Busqueda por nombre completo
-        if request.args.get('nombre_completo'): #http://127.0.0.1:6003/Usuarios?nombre_completo=Ian
+        #http://127.0.0.1:6003/Usuarios?nombre_completo=Maximo
+        if request.args.get('nombre_completo'): 
             usuarios=usuarios.filter(UsuarioModel.nombre_completo.like("%"+request.args.get('nombre_completo')+"%"))
         
         #Ordeno por nombre_completo
         if request.args.get('sortby_nombre_completo'):
             usuarios=usuarios.order_by(desc(UsuarioModel.nombre_completo))
+        
+        #Busqueda por DNI
+        #http://127.0.0.1:6003/Usuarios?dni=45564852
+        if request.args.get('dni'): 
+            usuarios=usuarios.filter(UsuarioModel.dni.like("%"+request.args.get('dni')+"%"))
+        
+        #Ordeno por DNI
+        if request.args.get('sortby_dni'):
+            usuarios=usuarios.order_by(desc(UsuarioModel.dni))
+        
+        #Busqueda por email
+        #http://127.0.0.1:6003/Usuarios?email=ian.olmedo@alumno.um.edu.ar
+        if request.args.get('email'): 
+            usuarios=usuarios.filter(UsuarioModel.email.like("%"+request.args.get('email')+"%"))
+        
+        #Ordeno por email
+        if request.args.get('sortby_email'):
+            usuarios=usuarios.order_by(desc(UsuarioModel.email)) 
             
         ### FIN FILTROS ####
         
@@ -58,15 +77,26 @@ class Usuarios(Resource):
         usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=True)
 
         return jsonify({'usuarios': [usuario.to_json() for usuario in usuarios],
-                  'total': usuarios.total,
-                  'pages': usuarios.pages,
-                  'page': page
+                  'total de usuarios': usuarios.total,
+                  'paginas': usuarios.pages,
+                  'pagina': page
                 })
 
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json())
         db.session.add(usuario)
         db.session.commit()
+        return usuario.to_json(), 201
+
+    #Insertar recurso
+    def post(self):
+        usuario = UsuarioModel.from_json(request.get_json())
+        print(usuario)
+        try:
+            db.session.add(usuario)
+            db.session.commit()
+        except:
+            return 'Formato no correcto', 400
         return usuario.to_json(), 201
     
     """    def get(self):
