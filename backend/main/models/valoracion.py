@@ -2,16 +2,17 @@ from .. import db
 from datetime import datetime
 
 class Valoraciones(db.Model):
+    __tablename__ = 'valoraciones'
     id_valoracion = db.Column(db.Integer, primary_key=True)
     id_libro = db.Column(db.Integer, db.ForeignKey("libro.id_libro"), nullable=False)
     id_usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id_usuario"), nullable=False)
     valoracion = db.Column(db.Integer, nullable=False)
     comentario = db.Column(db.String(100), nullable=False)
-    fecha_de_valoración = db.Column(db.DateTime, nullable=False)
+    fecha_de_valoracion = db.Column(db.DateTime, nullable=False)
     # Relación uno a muchos
-    #usuario = db.relationship("Usuarios", back_populates="valoraciones", uselist=False, single_parent=True)
+    usuario = db.relationship("Usuarios", back_populates="valoraciones", uselist=False, single_parent=True)
     #Relación uno a uno
-    #libro = db.relationship("Libro", uselist=False, back_populates="valoracion", cascade="all, delete-orphan", single_parent=True)
+    libro = db.relationship("Libro", uselist=False, back_populates="valoracion", cascade="all, delete-orphan", single_parent=True)
     
     def to_json(self):
         valoracion_json={
@@ -26,6 +27,9 @@ class Valoraciones(db.Model):
 
     @staticmethod
     def from_json(valoracion_json):
+        print(valoracion_json)
+        for i in valoracion_json:
+            print(type(i))
         id_valoracion = valoracion_json.get("id_valoracion")
         id_libro = valoracion_json.get("id_libro")
         id_usuario = valoracion_json.get("id_usuario")

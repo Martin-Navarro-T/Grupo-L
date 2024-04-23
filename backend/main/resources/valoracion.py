@@ -12,5 +12,5 @@ class Valoracion(Resource):
     def post(self):
         valoracion = ValoracionesModel.from_json(request.get_json())
         db.session.add(valoracion)
-        db.session.commit
+        db.session.commit()
         return valoracion.to_json(), 201

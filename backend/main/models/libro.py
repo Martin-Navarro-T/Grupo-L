@@ -10,12 +10,11 @@ class Libro(db.Model):
     descripcion = db.Column(db.String(100), nullable=False)
     stock = db.Column(db.Integer, nullable=False)
     # Relación uno a muchos
-    #prestamo = db.relationship("Prestamo", back_populates="libros", uselist=False, single_parent=True)
+    prestamo = db.relationship("Prestamo", back_populates="libros",cascade="all, delete-orphan", uselist=False, single_parent=True)
     #Relación uno a uno
-    #valoracion = db.relationship("Valoraciones", uselist=False, back_populates="libro", cascade="all, delete-orphan", single_parent=True)
+    valoracion = db.relationship("Valoraciones", uselist=False, back_populates="libro", cascade="all, delete-orphan", single_parent=True)
     # Relación muchos a muchos (tabla intermedia)
-    #autor = db.relationship('Autor' , secondary = 'libros_autores', back_populates = 'libros')
-
+    autor = db.relationship('Autor' , secondary = 'libros_autores', back_populates = 'libro')
 
     def to_json(self):
         libro_json={

@@ -4,8 +4,8 @@
 		"name": "Grupo L",
 		"description": "Grupo L de programación 1 compuesto por los siguientes integrantes: Camila Choque, Reynier López, Ian Olmedo y Martin Navarro.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33856219",
-		"_collection_link": "https://lively-capsule-695638.postman.co/workspace/Grupo-L-Workspace~0ba85bbd-693b-4f03-8c0f-e7e856d8e4ae/collection/33788060-929117ce-0fd2-4b4c-b327-78e2d689ceec?action=share&source=collection_link&creator=33856219"
+		"_exporter_id": "33788060",
+		"_collection_link": "https://lively-capsule-695638.postman.co/workspace/Grupo-L-Workspace~0ba85bbd-693b-4f03-8c0f-e7e856d8e4ae/collection/33788060-929117ce-0fd2-4b4c-b327-78e2d689ceec?action=share&source=collection_link&creator=33788060"
 	},
 	"item": [
 		{
@@ -130,7 +130,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"direccion\": \"Palmares\",\n        \"dni\": 45564852,\n        \"email\": \"zoe.choque@alumno.um.edu.ar\",\n        \"id_usuario\": 3,\n        \"nombre_completo\": \"Mariela Zoe Camila Choque\",\n        \"password\": \"emmacorazondemelon\",\n        \"telefono\": 26136584\n}",
+							"raw": "{\n        \"direccion\": \"Mendoza\",\n        \"dni\": 45564852,\n        \"email\": \"zoe.choque@alumno.um.edu.ar\",\n        \"id_usuario\": 1,\n        \"nombre_completo\": \"Mariela Zoe Camila Choque\",\n        \"password\": \"emmacorazondemelon\",\n        \"telefono\": 26136584\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -211,7 +211,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"cliente\":\"Ian Olmedo\", \"libro\":\"Percy Jackson 1\", \"vencimiento\":\"27/04/2024\", \"devuelto\":\"no\"}",
+							"raw": "{  \n        \"id_prestamo\": 1,\n        \"id_usuario\": 1,\n        \"id_libros\": 2,\n        \"fecha_de_entrega\": \"20-04-2024\",\n        \"fecha_de_vencimiento\": \"04-05-2024\",\n        \"estado\": \"devuelto\"\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -219,7 +219,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Prestamo/1",
+							"raw": "http://127.0.0.1:6003/Prestamo/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -227,7 +227,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Prestamo",
 								"1"
@@ -266,7 +266,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"cliente\":\"Martin perez\", \"libro\":\"Harry Potter\", \"vencimiento\":\"29/04/2024\", \"devuelto\":\"no\"}",
+							"raw": "{  \n        \"id_prestamo\": 3,\n        \"id_usuario\": 1,\n        \"id_libros\": 2,\n        \"fecha_de_entrega\": \"23-07-2024\",\n        \"fecha_de_vencimiento\": \"31-07-2024\",\n        \"estado\": \"no devuelto\"\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -274,7 +274,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Prestamos",
+							"raw": "http://127.0.0.1:6003/Prestamos",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -282,7 +282,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Prestamos"
 							]
@@ -414,7 +414,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"titulo\":\"Programacion II\", \"editorial\":\"hp.edu\", \"autor\":\"Martin Pepe Navarro\"}",
+							"raw": "{\n        \"id_libro\": 2,\n        \"titulo\": \"Harry potter y la piedra filosofal\",\n        \"genero\": \"Fantasia\",\n        \"editorial\": \"Salamandra\",\n        \"año_de_publicacion\": \"28-06-2006\",\n        \"descripcion\": \"novela\",\n        \"stock\": 0\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -422,7 +422,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Libro/2",
+							"raw": "http://127.0.0.1:6003/Libro/2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -430,7 +430,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Libro",
 								"2"
@@ -469,7 +469,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"año_de_publicacion\": \"28-06-2006\",\n        \"descripcion\": \"novela\",\n        \"editorial\": \"Salamandra\",\n        \"genero\": \"Fantasia\",\n        \"id_libro\": 5,\n        \"stock\": 0,\n        \"titulo\": \"Percy Jackson y el mar de los monstruos\"\n    }",
+							"raw": "    {\n        \"id_libro\": 5,\n        \"titulo\": \"Percy Jackson y el mar de los monstruos\",\n        \"genero\": \"Fantasia\",\n        \"editorial\": \"Salamandra\",\n        \"año_de_publicacion\": \"28-06-2006\",\n        \"descripcion\": \"novela\",\n        \"stock\": 0\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -649,7 +649,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Notificaciones",
+							"raw": "http://127.0.0.1:6003/Notificaciones",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -657,7 +657,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Notificaciones"
 							]
@@ -676,7 +676,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/Valoracion",
+							"raw": "http://127.0.0.1:6003/Valoracion",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -684,7 +684,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Valoracion"
 							]
@@ -699,7 +699,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"cliente\":\"Zoe Zo\", \"libro\":\"Muerte de la bruma\", \"fecha\":\"28/04/2024\", \"mensaje\":\"2 estrellas\"}",
+							"raw": "    {\n        \"id_valoracion\": 3,\n        \"id_libro\": 1,\n        \"id_usuario\": 2,\n        \"valoracion\": 3,\n        \"comentario\": \"Ya lo lei, esta bueno\",\n        \"fecha_de_valoracion\": \"13-05-2024\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -707,7 +707,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/Valoracion",
+							"raw": "http://127.0.0.1:6003/Valoracion",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -715,7 +715,7 @@
 								"0",
 								"1"
 							],
-							"port": "5000",
+							"port": "6003",
 							"path": [
 								"Valoracion"
 							]
@@ -835,7 +835,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id_autor\": 4,\n    \"nombre_completo\": \"Martin LutherKing \",\n    \"nacionalidad\": \"Estados Unidos\"\n}",
+							"raw": "{\n    \"id_autor\": 3,\n    \"nombre_completo\": \"Martin LutherKing \",\n    \"nacionalidad\": \"Estados Unidos\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
