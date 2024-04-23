@@ -10,10 +10,10 @@ class Prestamo(db.Model):
     fecha_de_vencimiento = db.Column(db.DateTime, nullable=False)
     estado = db.Column(db.String(100), nullable=False)
     # Relación uno a muchos
-    #usuario = db.relationship("Usuarios", back_populates="prestamo", uselist=False, single_parent=True)
+    usuario = db.relationship("Usuarios", back_populates="prestamos", uselist=False, single_parent=True)
     # Relación uno a muchos
-    #libros = db.relationship("Libro", back_populates="prestamo", cascade="all, delete-orphan")
-    
+    libros = db.relationship("Libro", back_populates="prestamo")
+
     #Convertir objeto en JSON
     def to_json(self):
         prestamo_json={

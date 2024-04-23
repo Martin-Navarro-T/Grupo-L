@@ -10,9 +10,9 @@ class Valoraciones(db.Model):
     comentario = db.Column(db.String(100), nullable=False)
     fecha_de_valoracion = db.Column(db.DateTime, nullable=False)
     # Relación uno a muchos
-    #usuario = db.relationship("Usuarios", back_populates="valoraciones", uselist=False, single_parent=True)
+    usuario = db.relationship("Usuarios", back_populates="valoraciones", uselist=False, single_parent=True)
     #Relación uno a uno
-    #libro = db.relationship("Libro", uselist=False, back_populates="valoracion", cascade="all, delete-orphan", single_parent=True)
+    libro = db.relationship("Libro", uselist=False, back_populates="valoracion", cascade="all, delete-orphan", single_parent=True)
     
     def to_json(self):
         valoracion_json={
