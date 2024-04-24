@@ -82,11 +82,6 @@ class Usuarios(Resource):
                   'pagina': page
                 })
 
-    def post(self):
-        usuario = UsuarioModel.from_json(request.get_json())
-        db.session.add(usuario)
-        db.session.commit()
-        return usuario.to_json(), 201
 
     #Insertar recurso
     def post(self):
