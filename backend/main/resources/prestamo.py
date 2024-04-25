@@ -124,6 +124,7 @@ class Prestamos(Resource):
                   'paginas': prestamos.pages,
                   'pagina': page
                 })
+
     
     def post(self):
         prestamo = PrestamoModel.from_json(request.get_json())
@@ -134,3 +135,4 @@ class Prestamos(Resource):
         except:
             return 'Formato no correcto', 400
         return prestamo.to_json(), 201
+
