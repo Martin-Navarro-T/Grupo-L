@@ -10,9 +10,12 @@ class Prestamo(db.Model):
     fecha_de_vencimiento = db.Column(db.DateTime, nullable=False)
     estado = db.Column(db.String(100), nullable=False)
     # Relación uno a muchos
-    #usuario = db.relationship("Usuarios", back_populates="prestamo", uselist=False, single_parent=True)
+    usuario = db.relationship("Usuarios", back_populates="prestamos", uselist=False, single_parent=True)
     # Relación uno a muchos
-    #libros = db.relationship("Libro", back_populates="prestamo", cascade="all, delete-orphan")
+    libros = db.relationship("Libro", back_populates="prestamo")
+
+    def __repr__(self):
+        return '<Prestamo: %r %r >' % (self.id_usuario, self.estado)
     
     #Convertir objeto en JSON
     def to_json(self):
@@ -26,6 +29,13 @@ class Prestamo(db.Model):
         }
         return prestamo_json
 
+    def to_json_short(self):
+        prestamo_json = {
+            'id_prestamo':self.id_prestamo,
+            'estado':str(self.estado),
+        }
+        return prestamo_json
+    
     @staticmethod
     #Convertir JSON a objeto
     def from_json(prestamo_json):
@@ -43,15 +53,4 @@ class Prestamo(db.Model):
                     estado=estado
                     )
 
-'''
-    def to_json_short(self):
-        prestamo_json = {
-            'id_prestamo':self.id_prestamo,
-            'id_usuario':self.id_usuario,
-            'id_libros':self.id_libros,
-            'fecha_de_entrega':str(self.fecha_de_entrega),
-            'fecha_de_vencimiento':str(self.fecha_de_vencimiento),
-            'estado':str(self.estado),
-        }
-        return prestamo_json
-''' 
+

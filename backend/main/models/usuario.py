@@ -8,13 +8,15 @@ class Usuarios(db.Model):
     email = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
-    #Relación uno a uno
-    #configuracion = db.relationship("Configuracion", uselist=False, back_populates="usuario", cascade="all, delete-orphan", single_parent=True)
+    #Relación uno a muchos
+    configuraciones = db.relationship("Configuracion", back_populates="usuario", cascade="all, delete-orphan")
+    #Relación uno a muchos  
+    prestamos = db.relationship("Prestamo", back_populates="usuario", cascade="all, delete-orphan")
     # Relación uno a muchos
-    #prestamos = db.relationship("Prestamo", back_populates="usuario", cascade="all, delete-orphan")
-    # Relación uno a muchos
-    #valoraciones = db.relationship("Valoraciones", back_populates="usuario", cascade="all, delete-orphan")
-    
+    valoraciones = db.relationship("Valoraciones", back_populates="usuario", cascade="all, delete-orphan")
+
+    def __repr__(self):
+        return '<Usuarios: %r >' % (self.nombre_completo)
     
     def to_json(self):
         usuario_json={
@@ -28,6 +30,28 @@ class Usuarios(db.Model):
         }
         return usuario_json
 
+    def to_json_complete(self):
+        prestamos = [prestamo.to_json() for prestamo in self.prestamos]
+        usuario_json={
+            'id_usuario':self.id_usuario,
+            'nombre_completo':str(self.nombre_completo),
+            'direccion':str(self.direccion),
+            'dni':self.dni,
+            'email':str(self.email),
+            'password':str(self.password),
+            'telefono':self.telefono,
+            'prestamos':prestamos
+        }
+        return usuario_json
+    
+    def to_json_short(self):
+        usuario_json={
+            'id_usuario':self.id_usuario,
+            'nombre_completo':str(self.nombre_completo),
+            'dni':self.dni
+        }
+        return usuario_json
+    
     @staticmethod
     def from_json(usuario_json):
         id_usuario = usuario_json.get("id_usuario")
@@ -46,4 +70,3 @@ class Usuarios(db.Model):
             password = password,
             telefono = telefono
         )
-

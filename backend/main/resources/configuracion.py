@@ -3,13 +3,10 @@ from flask import request, jsonify
 from .. import db
 from main.models import ConfiguracionModel
 
-
-
 class Configuracion(Resource):
     def get(self,id):
         configuracion = db.session.query(ConfiguracionModel).get_or_404(id)
         return configuracion.to_json(), 201
-
 
     def put(self, id): 
         configuracion = db.session.query(ConfiguracionModel).get_or_404(id)
@@ -19,7 +16,6 @@ class Configuracion(Resource):
         db.session.add(configuracion)
         db.session.commit() 
         return configuracion.to_json(), 201
-
 
     def delete(self,id):
         configuracion = db.session.query(ConfiguracionModel).get_or_404(id)
