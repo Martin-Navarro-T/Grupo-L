@@ -12,6 +12,95 @@
 			"name": "Usuarios",
 			"item": [
 				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Ver usuarios por nombre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Usuarios?nombre_completo=Maximo",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Usuarios"
+									],
+									"query": [
+										{
+											"key": "nombre_completo",
+											"value": "Maximo"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver usuarios por dni",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Usuarios?dni=45141159",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Usuarios"
+									],
+									"query": [
+										{
+											"key": "dni",
+											"value": "45141159"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver usuarios por email",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Usuarios?email=mt.navarro@alumno.um.edu.ar",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Usuarios"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "mt.navarro@alumno.um.edu.ar"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Ver todos los usuarios",
 					"request": {
 						"method": "GET",
@@ -130,7 +219,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"direccion\": \"Mendoza\",\n        \"dni\": 45564852,\n        \"email\": \"zoe.choque@alumno.um.edu.ar\",\n        \"id_usuario\": 1,\n        \"nombre_completo\": \"Mariela Zoe Camila Choque\",\n        \"password\": \"emmacorazondemelon\",\n        \"telefono\": 26136584\n}",
+							"raw": "{\n        \"direccion\": \"Mendoza\",\n        \"dni\": 45564852,\n        \"email\": \"zoe.choque@alumno.um.edu.ar\",\n        \"id_usuario\": 1,\n        \"nombre_completo\": \"Zoe Choque\",\n        \"password\": \"emma\",\n        \"telefono\": 26136584\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -159,6 +248,431 @@
 		{
 			"name": "Prestamos",
 			"item": [
+				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Ver prestamos con entrega por dia",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?fecha_de_entrega=20",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "fecha_de_entrega",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos con entrega por mes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?fecha_de_entrega=-04",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "fecha_de_entrega",
+											"value": "-04"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos con entrega por año",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?fecha_de_entrega=2024",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "fecha_de_entrega",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos con entrega descendente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?sortby_fecha_de_entrega=True",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "sortby_fecha_de_entrega",
+											"value": "True"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos con vencimiento por mes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?fecha_de_vencimiento=-06",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "fecha_de_vencimiento",
+											"value": "-06"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos con vencimiento por día",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?fecha_de_vencimiento=24",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "fecha_de_vencimiento",
+											"value": "24"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos con vencimiento por año",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?sortby_fecha_de_vencimiento=2024",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "sortby_fecha_de_vencimiento",
+											"value": "2024"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos con vencimiento descendente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?sortby_fecha_de_vencimiento=True",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "sortby_fecha_de_vencimiento",
+											"value": "True"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos por id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?id_prestamo=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "id_prestamo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos por id descendente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?sortby_id_prestamo=True",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "sortby_id_prestamo",
+											"value": "True"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos por id de usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?id_usuario=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "id_usuario",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos por id de usuario descendente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?sortby_id_usuario=True",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "sortby_id_usuario",
+											"value": "True"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos por id de libro",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?id_libros=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "id_libros",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos por id de libro descedente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?sortby_id_libros=True",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "sortby_id_libros",
+											"value": "True"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver prestamos por estado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Prestamos?estado=devuelto",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Prestamos"
+									],
+									"query": [
+										{
+											"key": "estado",
+											"value": "devuelto"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "Ver un prestamo",
 					"request": {
@@ -266,7 +780,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{  \n        \"id_prestamo\": 3,\n        \"id_usuario\": 1,\n        \"id_libros\": 2,\n        \"fecha_de_entrega\": \"23-07-2024\",\n        \"fecha_de_vencimiento\": \"31-07-2024\",\n        \"estado\": \"no devuelto\"\n        }",
+							"raw": "{  \n        \"id_prestamo\": 2,\n        \"id_usuario\": 1,\n        \"id_libros\": 2,\n        \"fecha_de_entrega\": \"23-07-2024\",\n        \"fecha_de_vencimiento\": \"31-07-2024\",\n        \"estado\": \"no devuelto\"\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -295,6 +809,95 @@
 		{
 			"name": "Libros",
 			"item": [
+				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Ver libro por titulo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Libros?titulo=Percy Jackson",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Libros"
+									],
+									"query": [
+										{
+											"key": "titulo",
+											"value": "Percy Jackson"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver libro por genero",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Libros?genero=comedia",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Libros"
+									],
+									"query": [
+										{
+											"key": "genero",
+											"value": "comedia"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver libro por descripcion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Libros?descripcion=cuento ",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Libros"
+									],
+									"query": [
+										{
+											"key": "descripcion",
+											"value": "cuento "
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "Ver libro",
 					"request": {
@@ -347,7 +950,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"id_libro\": 2,\n        \"titulo\": \"Harry potter y la piedra filosofal\",\n        \"genero\": \"Fantasia\",\n        \"editorial\": \"Salamandra\",\n        \"año_de_publicacion\": \"28-06-2006\",\n        \"descripcion\": \"novela\",\n        \"stock\": 0\n    }",
+							"raw": "{\n            \"año_de_publicacion\": \"28-06-2006\",\n            \"descripcion\": \"novela\",\n            \"editorial\": \"Salamandra\",\n            \"genero\": \"Fantasia\",\n            \"id_libro\": 5,\n            \"stock\": 10,\n            \"titulo\": \"Percy Jackson y el ladron del rayo\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -355,7 +958,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/Libro/2",
+							"raw": "http://127.0.0.1:6003/Libro/5",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -366,7 +969,7 @@
 							"port": "6003",
 							"path": [
 								"Libro",
-								"2"
+								"5"
 							]
 						}
 					},
@@ -402,7 +1005,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"id_libro\": 5,\n        \"titulo\": \"Percy Jackson y el mar de los monstruos\",\n        \"genero\": \"Fantasia\",\n        \"editorial\": \"Salamandra\",\n        \"año_de_publicacion\": \"28-06-2006\",\n        \"descripcion\": \"novela\",\n        \"stock\": 0\n    }",
+							"raw": "    {\n        \"id_libro\": 1,\n        \"titulo\": \"Percy Jackson y el mar de los monstruos\",\n        \"genero\": \"Fantasia\",\n        \"editorial\": \"Salamandra\",\n        \"año_de_publicacion\": \"28-06-2006\",\n        \"descripcion\": \"novela\",\n        \"stock\": 0\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -483,7 +1086,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"id_configuracion\": 3,\n        \"id_usuario\": 2,\n        \"nombre_configuracion\": \"Tamaño de pagina \",\n        \"valor_configuracion\": \"3\"\n    }",
+							"raw": "    {\n        \"id_configuracion\": 4,\n        \"id_usuario\": 2,\n        \"nombre_configuracion\": \"Tamaño de pagina \",\n        \"valor_configuracion\": \"3\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -545,7 +1148,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:6003/Configuracion/1",
+							"raw": "http://127.0.0.1:6003/Configuracion/4",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -556,7 +1159,7 @@
 							"port": "6003",
 							"path": [
 								"Configuracion",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -567,6 +1170,123 @@
 		{
 			"name": "Valoraciones",
 			"item": [
+				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Ver valoracion por libro",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Valoracion?id_libro=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Valoracion"
+									],
+									"query": [
+										{
+											"key": "id_libro",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver valoracion por usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Valoracion?id_usuario=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Valoracion"
+									],
+									"query": [
+										{
+											"key": "id_usuario",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver valoracion por fecha descendente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Valoracion?comentario=Me gusto",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Valoracion"
+									],
+									"query": [
+										{
+											"key": "comentario",
+											"value": "Me gusto"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ver valoracion por comentario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6003/Valoracion?sortby_fecha_de_valoracion=True",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6003",
+									"path": [
+										"Valoracion"
+									],
+									"query": [
+										{
+											"key": "sortby_fecha_de_valoracion",
+											"value": "True"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "Ver todas las valoraciones",
 					"request": {
@@ -596,7 +1316,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"id_valoracion\": 3,\n        \"id_libro\": 1,\n        \"id_usuario\": 2,\n        \"valoracion\": 3,\n        \"comentario\": \"Ya lo lei, esta bueno\",\n        \"fecha_de_valoracion\": \"13-05-2024\"\n    }",
+							"raw": "    {\n        \"id_valoracion\": 2,\n        \"id_libro\": 1,\n        \"id_usuario\": 2,\n        \"valoracion\": 3,\n        \"comentario\": \"Ya lo lei, esta bueno\",\n        \"fecha_de_valoracion\": \"13-05-2024\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -732,7 +1452,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id_autor\": 3,\n    \"nombre_completo\": \"Martin LutherKing \",\n    \"nacionalidad\": \"Estados Unidos\"\n}",
+							"raw": "{\n    \"id_autor\": 1,\n    \"nombre_completo\": \"Martin LutherKing \",\n    \"nacionalidad\": \"Estados Unidos\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
