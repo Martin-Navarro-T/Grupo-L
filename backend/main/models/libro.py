@@ -16,6 +16,9 @@ class Libro(db.Model):
     # Relación muchos a muchos (tabla intermedia)
     autor = db.relationship('Autor' , secondary = 'libros_autores', back_populates = 'libro')
 
+    def __repr__(self):                    
+        return '<Libro: %r >' % (self.titulo)
+    
     def to_json(self):
         libro_json={
             'id_libro':self.id_libro,
@@ -28,8 +31,6 @@ class Libro(db.Model):
         }
         return libro_json
     
-    
-    """""
     def to_json_short(self):
         libro_json = {
             'id_libro':self.id_libro,
@@ -41,8 +42,6 @@ class Libro(db.Model):
             'stock':self.stock
         }
         return libro_json
-
-    """""
 
     def from_json(libro_json):
         id_libro = libro_json.get('id_libro')

@@ -11,6 +11,9 @@ class Autor(db.Model):
     nacionalidad = db.Column(db.String(100), nullable=False)
     # Relación muchos a muchos (tabla intermedia)
     libro = db.relationship('Libro' , secondary = 'libros_autores', back_populates = 'autor')
+
+    def __repr__(self):                    
+        return '<Autor: %r >' % (self.nombre_completo)    
     
     def to_json(self):
         autor_json={

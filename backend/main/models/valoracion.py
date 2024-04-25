@@ -14,7 +14,7 @@ class Valoraciones(db.Model):
     #Relación uno a uno
     libro = db.relationship("Libro", uselist=False, back_populates="valoracion", cascade="all, delete-orphan", single_parent=True)
     
-    def __repr__(self):                     #Editado por mi(ian)
+    def __repr__(self):                    
         return '<Valoraciones: %r >' % (self.valoracion)
 
     def to_json(self):
