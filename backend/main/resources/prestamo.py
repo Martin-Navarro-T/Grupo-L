@@ -124,13 +124,15 @@ class Prestamos(Resource):
                   'paginas': prestamos.pages,
                   'pagina': page
                 })
-    """def get(self):
-        prestamos = db.session.query(PrestamoModel).all()
-        return jsonify([prestamo.to_json() for prestamo in prestamos])"""
+
     
     def post(self):
         prestamo = PrestamoModel.from_json(request.get_json())
-        db.session.add(prestamo)
-        db.session.commit()
+        print(prestamo)
+        try:
+            db.session.add(prestamo)
+            db.session.commit()
+        except:
+            return 'Formato no correcto', 400
         return prestamo.to_json(), 201
 

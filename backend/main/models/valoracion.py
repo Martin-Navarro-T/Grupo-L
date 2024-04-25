@@ -28,6 +28,28 @@ class Valoraciones(db.Model):
         }
         return valoracion_json
 
+    def to_json_short(self):
+            valoracion_json={
+                "id_valoracion":self.id_valoracion,
+                "valoracion":self.valoracion,
+                "comentario":self.comentario
+            }
+            return valoracion_json
+        
+    def to_json_complete(self):
+            libro = [libro.to_json() for libro in self.libro]
+            usuario = [usuario.to_json() for usuario in self.usuario]
+            valoracion_json={
+                'id_valoracion':self.id_valoracion,
+                'id_libro':self.id_libro,
+                'id_usuario':self.id_usuario,
+                'valoracion':self.valoracion,
+                'comentario':str(self.comentario),
+                'fecha_de_valoracion':str(self.fecha_de_valoracion.strftime("%d-%m-%Y")),
+                'usuario':usuario,
+                'libro':libro
+            }
+            return valoracion_json
     @staticmethod
     def from_json(valoracion_json):
         print(valoracion_json)

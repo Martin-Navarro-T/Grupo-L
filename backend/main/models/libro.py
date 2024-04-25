@@ -43,6 +43,20 @@ class Libro(db.Model):
         }
         return libro_json
 
+    def to_json_complete(self):
+            autor = [autor.to_json() for autor in self.autor]
+            libro_json={
+                'id_libro':self.id_libro,
+                'titulo':str(self.titulo),
+                'genero':str(self.genero),
+                'editorial':str(self.editorial),
+                'año_de_publicacion':str(self.año_de_publicacion.strftime("%d-%m-%Y")),
+                'descripcion':str(self.descripcion),
+                'stock':self.stock,
+                'autor':autor
+            }
+            return libro_json
+        
     def from_json(libro_json):
         id_libro = libro_json.get('id_libro')
         titulo = libro_json.get('titulo')
