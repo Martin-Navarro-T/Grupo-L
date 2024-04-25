@@ -2,7 +2,8 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from datetime import datetime
-from main.models import LibroModel
+from main.models import LibroModel, ValoracionesModel, AutorModel
+from sqlalchemy import func,desc
 
 
 class Libro(Resource):
@@ -34,11 +35,69 @@ class Libro(Resource):
 
 class Libros(Resource):
     def get(self):
-        libros = db.session.query(LibroModel).all()
-        return jsonify([libro.to_json() for libro in libros])
+        #Página inicial por defecto
+        page = 1
+        #Cantidad de elementos por página por defecto
+        per_page = 10  
+        
+        #no ejecuto el .all()
+        libros = db.session.query(LibroModel)
+
+        if request.args.get('page'):
+            page = int(request.args.get('page'))
+        if request.args.get('per_page'):
+            per_page = int(request.args.get('per_page'))
+        
+        ### FILTROS ###
+        if request.args.get('nrValoraciones'):
+            libros=libros.outerjoin(LibroModel.valoracion).group_by(LibroModel.id).having(func.count(ValoracionesModel.id) >= int(request.args.get('nrValoraciones ')))
+
+        #Busqueda por titulo
+        if request.args.get('titulo'): 
+            libros=libros.filter(LibroModel.titulo.like("%"+request.args.get('titulo')+"%"))
+        
+        #Ordeno por titulo
+        if request.args.get('sortby_titulo'):
+            libros=libros.order_by(desc(LibroModel.titulo))
+        
+        #Busqueda por genero
+        if request.args.get('genero'): 
+            libros=libros.filter(LibroModel.genero.like("%"+request.args.get('genero')+"%"))
+        
+        #Ordeno por genero
+        if request.args.get('sortby_genero'):
+            libros=libros.order_by(desc(LibroModel.genero))
+        
+        #Busqueda por descripcion 
+        if request.args.get('descripcion'): 
+            libros=libros.filter(LibroModel.descripcion.like("%"+request.args.get('descripcion')+"%"))
+        
+        #Ordeno por descripcion 
+        if request.args.get('sortby_descripcion'):
+            libros=libros.order_by(desc(LibroModel.descripcion)) 
+            
+        ### FIN FILTROS ####
+        
+        #Obtener valor paginado
+        libros = libros.paginate(page=page, per_page=per_page, error_out=True)
+
+        return jsonify({'libros': [libro.to_json() for libro in libros],
+                  'total de libros': libros.total,
+                  'paginas': libros.pages,
+                  'pagina': page
+                })
 
     def post(self):
-        libro = LibroModel.from_json(request.get_json())
-        db.session.add(libro)
-        db.session.commit()
-        return libro.to_json(), 201
+        
+         autores_ids = request.get_json().get('autores')
+         libro = LibroModel.from_json(request.get_json())
+        
+         if autores_ids:
+            # Obtener las instancias de auntor basadas en las ids recibidas
+            autores = AutorModel.query.filter(AutorModel.id.in_(autores_ids)).all()
+            # Agregar las instancias de auntor a la lista de autores del libro
+            libro.exhibiciones.extend(autores)
+            
+         db.session.add(libro)
+         db.session.commit()
+         return libro.to_json(), 201

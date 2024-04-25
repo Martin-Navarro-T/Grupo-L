@@ -35,7 +35,23 @@ class Prestamo(db.Model):
             'estado':str(self.estado),
         }
         return prestamo_json
-    
+
+    def to_json_complete(self):
+            usuario = [usuario.to_json() for usuario in self.usuario]
+            libro = [libro.to_json() for libro in self.libros]
+            prestamo_json={
+                'id_usuario':self.id_usuario,
+                'nombre_completo':str(self.nombre_completo),
+                'direccion':str(self.direccion),
+                'dni':self.dni,
+                'email':str(self.email),
+                'password':str(self.password),
+                'telefono':self.telefono,
+                'usuarios':usuario,
+                'libro':libro
+            }
+            return prestamo_json
+        
     @staticmethod
     #Convertir JSON a objeto
     def from_json(prestamo_json):
