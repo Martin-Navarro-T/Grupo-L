@@ -20,6 +20,10 @@ class Valoracion(Resource):
             per_page = int(request.args.get('per_page'))
 
         #Filtros
+        #Bucar por id_valoracion 
+        if request.args.get("id_valoracion"):
+            valoracion = valoracion.filter(ValoracionesModel.id_valoracion == request.args.get("id_valoracion"))
+
         #Busqueda por libro
         if request.args.get('id_libro'):
             valoracion = valoracion.filter(ValoracionesModel.id_libro == request.args.get('id_libro'))
@@ -32,9 +36,6 @@ class Valoracion(Resource):
         if request.args.get('sortby_fecha_de_valoracion'):
             valoracion = valoracion.order_by(desc(ValoracionesModel.fecha_de_valoracion))
 
-        #Por comentario
-        if request.args.get('comentario'):
-            valoracion = valoracion.filter(ValoracionesModel.comentario.like("%"+request.args.get('comentario')+"%"))
 
         #terminan los filtros
 

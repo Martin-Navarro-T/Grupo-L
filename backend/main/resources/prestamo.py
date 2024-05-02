@@ -120,9 +120,9 @@ class Prestamos(Resource):
         prestamos = prestamos.paginate(page=page, per_page=per_page, error_out=True)
 
         return jsonify({'prestamos': [prestamo.to_json() for prestamo in prestamos.items],
-                  'total de prestamos': prestamos.total,
-                  'paginas': prestamos.pages,
-                  'pagina': page
+                'total de prestamos': prestamos.total,
+                'paginas': prestamos.pages,
+                'pagina': page
                 })
 
     

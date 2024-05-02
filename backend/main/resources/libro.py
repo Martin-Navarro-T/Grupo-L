@@ -82,22 +82,22 @@ class Libros(Resource):
         libros = libros.paginate(page=page, per_page=per_page, error_out=True)
 
         return jsonify({'libros': [libro.to_json() for libro in libros],
-                  'total de libros': libros.total,
-                  'paginas': libros.pages,
-                  'pagina': page
+                'total de libros': libros.total,
+                'paginas': libros.pages,
+                'pagina': page
                 })
 
     def post(self):
         
-         autores_ids = request.get_json().get('autores')
-         libro = LibroModel.from_json(request.get_json())
+        autores_ids = request.get_json().get('autores')
+        libro = LibroModel.from_json(request.get_json())
         
-         if autores_ids:
+        if autores_ids:
             # Obtener las instancias de auntor basadas en las ids recibidas
             autores = AutorModel.query.filter(AutorModel.id.in_(autores_ids)).all()
             # Agregar las instancias de auntor a la lista de autores del libro
             libro.exhibiciones.extend(autores)
             
-         db.session.add(libro)
-         db.session.commit()
-         return libro.to_json(), 201
+        db.session.add(libro)
+        db.session.commit()
+        return libro.to_json(), 201
