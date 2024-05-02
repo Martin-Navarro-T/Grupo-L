@@ -40,7 +40,6 @@ class Prestamos(Resource):
         page = 1
         per_page = 10
 
-        id_usuario = request.args.get('id_usuario')
         filters = request.args.to_dict()
 
         prestamos = db.session.query(PrestamoModel)
@@ -50,81 +49,70 @@ class Prestamos(Resource):
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
         
-        if id_usuario:
-            prestamos = prestamos.filter(PrestamoModel.id_usuario == id_usuario)
-            
-        if filters:
-            for key, value in filters.items():
-                if key == "id_usuario":
-                    prestamos = prestamos.filter(PrestamoModel.id_usuario == value)
-                elif key == "fecha_de_entrega":
-                    if value.startswith('-'):
-                        month = value.lstrip('-')
-                        prestamos = prestamos.filter(
-                            extract('month', PrestamoModel.fecha_de_entrega) == int(month)
-                        )
-                    elif len(value) == 2:
-                        prestamos = prestamos.filter(
-                            extract('day', PrestamoModel.fecha_de_entrega) == int(value)
-                        )
-                    elif len(value) == 4:
-                        prestamos = prestamos.filter(
-                            extract('year', PrestamoModel.fecha_de_entrega) == int(value)
-                        )
-                    else:
-                        prestamos=prestamos.filter(PrestamoModel.fecha_de_entrega.like("%"+value+"%"))
-                elif key == "fecha_de_vencimiento":
-                    if value.startswith('-'):
-                        month = value.lstrip('-')
-                        prestamos = prestamos.filter(
-                            extract('month', PrestamoModel.fecha_de_vencimiento) == int(month)
-                        )
-                    elif len(value) == 2:
-                        prestamos = prestamos.filter(
-                            extract('day', PrestamoModel.fecha_de_vencimiento) == int(value)
-                        )
-                    elif len(value) == 4:
-                        prestamos = prestamos.filter(
-                            extract('year', PrestamoModel.fecha_de_vencimiento) == int(value)
-                        )
-                    else:
-                        prestamos=prestamos.filter(PrestamoModel.fecha_de_vencimiento.like("%"+value+"%"))
-
-        if request.args.get('id_prestamo'):
-            prestamos = prestamos.filter(PrestamoModel.id_prestamo == value)
+        for key, value in filters.items():
+            if key == "id_usuario":
+                prestamos = prestamos.filter(PrestamoModel.id_usuario == value)
+            elif key == "id_prestamo":
+                prestamos = prestamos.filter(PrestamoModel.id_prestamo == value)
+            elif key == "id_libro":
+                prestamos = prestamos.filter(PrestamoModel.id_libros == value)
+            elif key == "fecha_de_entrega":
+                if value.startswith('-'):
+                    month = value.lstrip('-')
+                    prestamos = prestamos.filter(
+                        extract('month', PrestamoModel.fecha_de_entrega) == int(month)
+                    )
+                elif len(value) == 2:
+                    prestamos = prestamos.filter(
+                        extract('day', PrestamoModel.fecha_de_entrega) == int(value)
+                    )
+                elif len(value) == 4:
+                    prestamos = prestamos.filter(
+                        extract('year', PrestamoModel.fecha_de_entrega) == int(value)
+                    )
+                else:
+                    prestamos = prestamos.filter(PrestamoModel.fecha_de_entrega.like("%"+value+"%"))
+            elif key == "fecha_de_vencimiento":
+                if value.startswith('-'):
+                    month = value.lstrip('-')
+                    prestamos = prestamos.filter(
+                        extract('month', PrestamoModel.fecha_de_vencimiento) == int(month)
+                    )
+                elif len(value) == 2:
+                    prestamos = prestamos.filter(
+                        extract('day', PrestamoModel.fecha_de_vencimiento) == int(value)
+                    )
+                elif len(value) == 4:
+                    prestamos = prestamos.filter(
+                        extract('year', PrestamoModel.fecha_de_vencimiento) == int(value)
+                    )
+                else:
+                    prestamos = prestamos.filter(PrestamoModel.fecha_de_vencimiento.like("%"+value+"%"))
+            elif key == "estado":
+                prestamos = prestamos.filter(PrestamoModel.estado == value)
 
         if request.args.get('sortby_id_prestamo'):
-            prestamos=prestamos.order_by(desc(PrestamoModel.id_prestamo))
-
-        if request.args.get('id_usuario'):
-            prestamos = prestamos.filter(PrestamoModel.id_usuario == value)
+            prestamos = prestamos.order_by(desc(PrestamoModel.id_prestamo))
 
         if request.args.get('sortby_id_usuario'):
-            prestamos=prestamos.order_by(desc(PrestamoModel.id_usuario))
+            prestamos = prestamos.order_by(desc(PrestamoModel.id_usuario))
 
-        if request.args.get('id_libros'):
-            prestamos = prestamos.filter(PrestamoModel.id_libros == value)
-
-        if request.args.get('sortby_id_libros'):
-            prestamos=prestamos.order_by(desc(PrestamoModel.id_libros))
+        if request.args.get('sortby_id_libro'):
+            prestamos = prestamos.order_by(desc(PrestamoModel.id_libros))
 
         if request.args.get('sortby_fecha_de_entrega'):
-            prestamos=prestamos.order_by(desc(PrestamoModel.fecha_de_entrega))
+            prestamos = prestamos.order_by(desc(PrestamoModel.fecha_de_entrega))
         
         if request.args.get('sortby_fecha_de_vencimiento'):
-            prestamos=prestamos.order_by(desc(PrestamoModel.fecha_de_vencimiento))
-
-        if request.args.get('estado'):
-            prestamos = prestamos.filter(PrestamoModel.estado == value)
+            prestamos = prestamos.order_by(desc(PrestamoModel.fecha_de_vencimiento))
 
         prestamos = prestamos.paginate(page=page, per_page=per_page, error_out=True)
 
         return jsonify({'prestamos': [prestamo.to_json() for prestamo in prestamos.items],
-                  'total de prestamos': prestamos.total,
-                  'paginas': prestamos.pages,
-                  'pagina': page
+                'total de prestamos': prestamos.total,
+                'paginas': prestamos.pages,
+                'pagina': page
                 })
-
     
     def post(self):
         prestamo = PrestamoModel.from_json(request.get_json())
