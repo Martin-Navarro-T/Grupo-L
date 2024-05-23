@@ -4,14 +4,17 @@ from .. import db
 from datetime import datetime
 from main.models import LibroModel, ValoracionesModel, AutorModel
 from sqlalchemy import func,desc
-
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import roles_required
 
 class Libro(Resource):
+    @jwt_required(optional=True)
     def get(self,id):
     
         libro = db.session.query(LibroModel).get_or_404(id)
-        return libro.to_json(), 201 
-        
+        return libro.to_json_complete(), 201 
+    
+    @roles_required(roles = ["admin"])
     def put(self,id):
         libro = db.session.query(LibroModel).get_or_404(id)
         data = request.get_json().items()
@@ -25,7 +28,7 @@ class Libro(Resource):
         db.session.commit()
         return libro.to_json() , 201
 
-
+    @roles_required(roles = ["admin"])
     def delete(self,id):
         libro = db.session.query(LibroModel).get_or_404(id)
         db.session.delete(libro)
@@ -34,6 +37,7 @@ class Libro(Resource):
     
 
 class Libros(Resource):
+    @jwt_required(optional=True)
     def get(self):
         #Página inicial por defecto
         page = 1
@@ -81,12 +85,12 @@ class Libros(Resource):
         #Obtener valor paginado
         libros = libros.paginate(page=page, per_page=per_page, error_out=True)
 
-        return jsonify({'libros': [libro.to_json() for libro in libros],
+        return jsonify({'libros': [libro.to_json_complete() for libro in libros],
                 'total de libros': libros.total,
                 'paginas': libros.pages,
                 'pagina': page
                 })
-
+    @roles_required(roles = ["admin"])
     def post(self):
         
         autores_ids = request.get_json().get('autores')

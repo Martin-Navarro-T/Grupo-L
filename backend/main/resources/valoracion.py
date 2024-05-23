@@ -3,9 +3,11 @@ from flask import request,jsonify
 from .. import db
 from main.models import ValoracionesModel
 from sqlalchemy import desc, func
-
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import roles_required
 
 class Valoracion(Resource):
+    @jwt_required(optional=True)
     def get(self):
         page = 1
 
@@ -42,8 +44,9 @@ class Valoracion(Resource):
         #Paginacion
         valoracion = valoracion.paginate(page=page, per_page=per_page, error_out=False)
 
-        return jsonify({ 'valoraciones': [valoracion.to_json() for valoracion in valoracion.items], 'total': valoracion.total })
+        return jsonify({ 'valoraciones': [valoracion.to_json_complete() for valoracion in valoracion.items], 'total': valoracion.total })
     
+    @roles_required(roles = ["admin", "users"])
     def post(self):
         valoracion= ValoracionesModel.from_json(request.get_json())
         print(valoracion)
