@@ -12,7 +12,7 @@ class Libro(db.Model):
     # Relación uno a muchos
     prestamo = db.relationship("Prestamo", back_populates="libros",cascade="all, delete-orphan", uselist=False, single_parent=True)
     #Relación uno a uno
-    valoracion = db.relationship("Valoraciones", uselist=False, back_populates="libro", cascade="all, delete-orphan", single_parent=True)
+    valoracion = db.relationship("Valoraciones", back_populates="libro", cascade="all, delete-orphan", single_parent=True)
     # Relación muchos a muchos (tabla intermedia)
     autor = db.relationship('Autor' , secondary = 'libros_autores', back_populates = 'libro')
 

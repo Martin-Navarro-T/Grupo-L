@@ -44,7 +44,7 @@ class Valoracion(Resource):
         #Paginacion
         valoracion = valoracion.paginate(page=page, per_page=per_page, error_out=False)
 
-        return jsonify({ 'valoraciones': [valoracion.to_json_complete() for valoracion in valoracion.items], 'total': valoracion.total })
+        return jsonify({ 'valoraciones': [valoracion.to_json() for valoracion in valoracion.items], 'total': valoracion.total })
     
     @roles_required(roles = ["admin", "users"])
     def post(self):

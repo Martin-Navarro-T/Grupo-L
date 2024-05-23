@@ -9,7 +9,7 @@ class Autor(Resource):
     @jwt_required(optional=True)
     def get(self,id):
         autor = db.session.query(AutorModel).get_or_404(id)
-        return autor.to_json_complete(), 201 
+        return autor.to_json(), 201 
 
     @roles_required(roles = ["admin"])
     def put(self,id):
@@ -33,7 +33,7 @@ class Autores(Resource):
     @jwt_required(optional=True)
     def get(self):
         autores = db.session.query(AutorModel).all()
-        return jsonify([autor.to_json_complete() for autor in autores])
+        return jsonify([autor.to_json() for autor in autores])
 
     @roles_required(roles = ["admin"])
     def post(self):
