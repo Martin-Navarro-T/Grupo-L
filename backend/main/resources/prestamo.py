@@ -4,20 +4,24 @@ from .. import db
 from datetime import datetime
 from main.models import PrestamoModel
 from sqlalchemy import extract, desc
-
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import roles_required
 #post crea y put actualiza
 
 class Prestamo(Resource):
+    @roles_required(roles = ["admin", "users"])
     def get(self, id):
         prestamo = db.session.query(PrestamoModel).get_or_404(id)
         return prestamo.to_json(), 201
     
+    @roles_required(roles = ["admin"])
     def delete(self, id):
         prestamo = db.session.query(PrestamoModel).get_or_404(id)
         db.session.delete(prestamo)
         db.session.commit()
         return 'El prestamo fue eliminado correctamente', 204
     
+    @roles_required(roles = ["admin"])
     def put(self, id):
         prestamo = db.session.query(PrestamoModel).get_or_404(id)
         data = request.get_json().items()
@@ -36,6 +40,7 @@ class Prestamo(Resource):
 
 
 class Prestamos(Resource):
+    @roles_required(roles = ["admin"])
     def get(self):
         page = 1
         per_page = 10
@@ -114,6 +119,7 @@ class Prestamos(Resource):
                 'pagina': page
                 })
     
+    @roles_required(roles = ["admin"])
     def post(self):
         prestamo = PrestamoModel.from_json(request.get_json())
         print(prestamo)

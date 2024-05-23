@@ -1,12 +1,18 @@
 from .. import db
+#Importamos de python 2 funciones
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class Usuarios(db.Model):
     id_usuario = db.Column(db.Integer, primary_key=True)
     nombre_completo = db.Column(db.String(100), nullable=False)
     direccion = db.Column(db.String(100), nullable=False)
     dni = db.Column(db.Integer, nullable=False)
-    email = db.Column(db.String(100), nullable=False)
-    password = db.Column(db.String(100), nullable=False)
+    #Mail usado como nombre de usuario
+    email = db.Column(db.String(64), unique=True, index=True, nullable=False)
+    #Contraseña que será el hash de la pass en texto plano
+    password = db.Column(db.String(128), nullable=False)
+    #Rol (En el caso que existan diferentes tipos de usuarios con diferentes permisos)
+    rol = db.Column(db.String(10), nullable=False, server_default="users")
     telefono = db.Column(db.Integer, nullable=False)
     #Relación uno a muchos
     configuraciones = db.relationship("Configuracion", back_populates="usuario", cascade="all, delete-orphan")
@@ -14,9 +20,24 @@ class Usuarios(db.Model):
     prestamos = db.relationship("Prestamo", back_populates="usuario", cascade="all, delete-orphan")
     # Relación uno a muchos
     valoraciones = db.relationship("Valoraciones", back_populates="usuario", cascade="all, delete-orphan")
-
+    
     def __repr__(self):
         return '<Usuarios: %r >' % (self.nombre_completo)
+    
+    
+    #Getter de la contraseña plana no permite leerla
+    @property
+    def plain_password(self):
+        raise AttributeError('No se puede leer la contraseña')
+    #Setter de la contraseña toma un valor en texto plano
+    # calcula el hash y lo guarda en el atributo password
+    @plain_password.setter
+    def plain_password(self, password):
+        self.password = generate_password_hash(password)
+        
+    #Método que compara una contraseña en texto plano con el hash guardado en la db
+    def validate_pass(self,password):
+        return check_password_hash(self.password, password)
     
     def to_json(self):
         usuario_json={
@@ -26,6 +47,7 @@ class Usuarios(db.Model):
             'dni':self.dni,
             'email':str(self.email),
             'password':str(self.password),
+            'rol': self.rol,
             'telefono':self.telefono
         }
         return usuario_json
@@ -47,6 +69,7 @@ class Usuarios(db.Model):
             'dni':self.dni,
             'email':str(self.email),
             'password':str(self.password),
+            'rol': self.rol,
             'telefono':self.telefono,
             'prestamos':prestamos
         }
@@ -60,6 +83,7 @@ class Usuarios(db.Model):
         dni = usuario_json.get("dni")
         email = usuario_json.get("email")
         password = usuario_json.get("password")
+        rol = usuario_json.get("rol")
         telefono = usuario_json.get("telefono")
         return Usuarios(
             id_usuario = id_usuario,
@@ -67,6 +91,7 @@ class Usuarios(db.Model):
             direccion = direccion,
             dni = dni,
             email = email,
-            password = password,
+            plain_password = password,
+            rol = rol,
             telefono = telefono
         )
