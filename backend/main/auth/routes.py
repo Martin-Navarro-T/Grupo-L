@@ -2,6 +2,7 @@ from flask import request, jsonify, Blueprint
 from .. import db
 from main.models import UsuarioModel
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
+from main.mail.functions import sendMail
 
 #Blueprint para acceder a los métodos de autenticación
 auth = Blueprint('auth', __name__, url_prefix='/auth')
@@ -41,7 +42,10 @@ def register():
             #Agregar usuario a DB
             db.session.add(usuario)
             db.session.commit()
+            #Enviar mail de bienvenida
+            send = sendMail([usuario.email],"Bienvenido!",'register',usuario = usuario)
         except Exception as error:
             db.session.rollback() #para volver atras
             return str(error), 409
         return usuario.to_json() , 201
+
