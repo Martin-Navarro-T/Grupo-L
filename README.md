@@ -1,4 +1,5 @@
-# Grupo-L
+# Repositorio Programación I
+## Grupo-L
 ## Integrantes
 - Martin Navarro
 - Ian Olmedo
